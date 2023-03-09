@@ -213,7 +213,7 @@ CHIP_ERROR ConfigurationManagerImpl::GetSoftwareVersionString(char * buf, size_t
 
 CHIP_ERROR ConfigurationManagerImpl::GetSoftwareVersion(uint32_t & softwareVer)
 {
-    softwareVer = CHIP_CONFIG_SOFTWARE_VERSION_NUMBER;
+    softwareVer = 0;
     return CHIP_NO_ERROR;
 }
 
