@@ -122,6 +122,13 @@ bool DoorLockServer::SetLockState(chip::EndpointId endpointId, DlLockState newLo
     SendLockOperationEvent(endpointId, opType, opSource, OperationErrorEnum::kUnspecified, userIndex, Nullable<chip::FabricIndex>(),
                            Nullable<chip::NodeId>(), credentials, success);
 
+    // Reset wrong entry attempts (in case there were any incorrect credentials presented before) if lock/unlock was a success
+    // and a valid credential was presented.
+    if (success && !credentials.IsNull() && !(credentials.Value().empty()))
+    {
+        ResetWrongCodeEntryAttempts(endpointId);
+    }
+
     // Schedule auto-relocking
     if (success && LockOperationTypeEnum::kUnlock == opType)
     {
@@ -181,7 +188,7 @@ bool DoorLockServer::SetPrivacyModeButton(chip::EndpointId endpointId, bool isEn
     return SetAttribute(endpointId, Attributes::EnablePrivacyModeButton::Id, Attributes::EnablePrivacyModeButton::Set, isEnabled);
 }
 
-bool DoorLockServer::TrackWrongCodeEntry(chip::EndpointId endpointId)
+bool DoorLockServer::HandleWrongCodeEntry(chip::EndpointId endpointId)
 {
     auto endpointContext = getContext(endpointId);
     if (nullptr == endpointContext)
@@ -207,6 +214,17 @@ bool DoorLockServer::TrackWrongCodeEntry(chip::EndpointId endpointId)
         return false;
     }
     return true;
+}
+
+void DoorLockServer::ResetWrongCodeEntryAttempts(chip::EndpointId endpointId)
+{
+    auto endpointContext = getContext(endpointId);
+    if (nullptr == endpointContext)
+    {
+        ChipLogError(Zcl, "Failed to reset wrong code entry attempts. No context for endpoint %d", endpointId);
+        return;
+    }
+    endpointContext->wrongCodeEntryAttempts = 0;
 }
 
 bool DoorLockServer::engageLockout(chip::EndpointId endpointId)
@@ -236,6 +254,8 @@ bool DoorLockServer::engageLockout(chip::EndpointId endpointId)
         chip::System::SystemClock().GetMonotonicTimestamp() + chip::System::Clock::Seconds32(lockoutTimeout);
 
     emberAfDoorLockClusterPrintln("Lockout engaged [endpointId=%d,lockoutTimeout=%d]", endpointId, lockoutTimeout);
+
+    SendLockAlarmEvent(endpointId, AlarmCodeEnum::kWrongCodeEntryLimit);
 
     emberAfPluginDoorLockLockoutStarted(endpointId, endpointContext->lockoutEndTimestamp);
 
@@ -433,6 +453,20 @@ void DoorLockServer::getUserCommandHandler(chip::app::CommandHandler * commandOb
         return;
     }
 
+    Commands::GetUserResponse::Type response;
+
+    // appclusters, 5.2.4.36.1: We need to add next occupied user after userIndex if any.
+    //
+    // We want to do this before we call emberAfPluginDoorLockGetUser, because this will
+    // make its own emberAfPluginDoorLockGetUser calls, and a
+    // EmberAfPluginDoorLockUserInfo might be pointing into some application-static
+    // buffers (for its credentials and whatnot).
+    uint16_t nextAvailableUserIndex = 0;
+    if (findOccupiedUserSlot(commandPath.mEndpointId, static_cast<uint16_t>(userIndex + 1), nextAvailableUserIndex))
+    {
+        response.nextUserIndex.SetNonNull(nextAvailableUserIndex);
+    }
+
     EmberAfPluginDoorLockUserInfo user;
     if (!emberAfPluginDoorLockGetUser(commandPath.mEndpointId, userIndex, user))
     {
@@ -441,7 +475,6 @@ void DoorLockServer::getUserCommandHandler(chip::app::CommandHandler * commandOb
         return;
     }
 
-    Commands::GetUserResponse::Type response;
     response.userIndex = userIndex;
 
     // appclusters, 5.2.4.36: we should not set user-specific fields to non-null if the user status is set to Available
@@ -478,12 +511,6 @@ void DoorLockServer::getUserCommandHandler(chip::app::CommandHandler * commandOb
         emberAfDoorLockClusterPrintln("[GetUser] User not found [userIndex=%d]", userIndex);
     }
 
-    // appclusters, 5.2.4.36.1: We need to add next occupied user after userIndex if any.
-    uint16_t nextAvailableUserIndex = 0;
-    if (findOccupiedUserSlot(commandPath.mEndpointId, static_cast<uint16_t>(userIndex + 1), nextAvailableUserIndex))
-    {
-        response.nextUserIndex.SetNonNull(nextAvailableUserIndex);
-    }
     commandObj->AddResponse(commandPath, response);
 }
 
@@ -3352,7 +3379,13 @@ bool DoorLockServer::HandleRemoteLockOperation(chip::app::CommandHandler * comma
 exit:
     if (!success && reason == OperationErrorEnum::kInvalidCredential)
     {
-        TrackWrongCodeEntry(endpoint);
+        HandleWrongCodeEntry(endpoint);
+    }
+
+    // Reset the wrong code retry attempts if a valid credential is presented during lock/unlock
+    if (success && pinCode.HasValue())
+    {
+        ResetWrongCodeEntryAttempts(endpoint);
     }
 
     // Send command response

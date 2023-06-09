@@ -108,7 +108,19 @@ menu "CHIP Core"
             help
                 Build CHIP test binaries.
 
-        # TODO: add log level selection
+        config DISPATCH_EVENT_LONG_DISPATCH_TIME_WARNING_THRESHOLD_MS
+            int  "Set threshold in ms"
+            default 700
+            help
+                Time threshold for warning that dispatched took too long. You can
+                set this default set to 0 to to disable event dispatching time
+                measurement and suppress the logs "Long dispatch time:...".
+
+        config CHIP_LOG_FILTERING
+            bool "CHIP log level filtering APIs"
+            default n
+            help
+                Option to enable/disable CHIP log level filtering APIs.
 
     endmenu # "General Options"
 
@@ -170,6 +182,13 @@ menu "CHIP Core"
             default n
             help
                 Enable this option to enable OTA Requestor for example
+
+        config ENABLE_ENCRYPTED_OTA
+            bool "Enable pre encrypted OTA"
+            depends on ENABLE_OTA_REQUESTOR
+            default n
+            help
+                Enable this option to use the pre encrypted OTA image
 
         config OTA_AUTO_REBOOT_ON_APPLY
             bool "Reboot the device after applying the OTA image"
@@ -498,6 +517,13 @@ menu "CHIP Device Layer"
     menu "CHIP Thread Options"
         visible if OPENTHREAD_ENABLED
 
+        config ENABLE_MATTER_OVER_THREAD
+            bool "Enable Matter-over-Thread Support"
+            default y
+            depends on OPENTHREAD_ENABLED
+            help
+                Enables support for sending and receiving CHIP messages over a Thread Connection.
+
         config THREAD_TASK_STACK_SIZE
             int "Thread task stack size"
             default 5120
@@ -677,6 +703,23 @@ menu "CHIP Device Layer"
             default n
             help
                 Enable ESP32 Device LocationCapability
+
+        config SEC_CERT_DAC_PROVIDER
+            bool "Use Secure Cert DAC Provider"
+            default n
+            help
+                Use ESP32 Secure Cert DAC Provider which is  ESP32 DeviceAttestationCredentialsProvider implementation which reads attestation
+                information from the esp_secure_cert partition
+
+        config USE_ESP32_ECDSA_PERIPHERAL
+            bool "Use ESP32 ECDSA Peripheral"
+            depends on SEC_CERT_DAC_PROVIDER && SOC_ECDSA_SUPPORTED
+            default y
+            select MBEDTLS_HARDWARE_ECDSA_SIGN
+            help
+                If DAC is being read from secure cert and SOC supports ECDSA signing using on-chip peripheral
+                then this option gets enabled.
+                Also, please disable ESP_SECURE_CERT_DS_PERIPHERAL from the menuconfig when this option is disabled
 
     endmenu
 
@@ -886,6 +929,14 @@ menu "CHIP Device Layer"
             default 900 
             help
                 The amount of time (in seconds) after which the CHIP platform will close the Commissioning Window
+    endmenu
+
+    menu "Enable ESP32 as a BLE Commissioner"
+        config ENABLE_ESP32_BLE_CONTROLLER
+            bool "Enable ESP32 as a BLE Commissioner"
+            default n
+            help
+                Enable esp32 as a BLE Commissioner.
 
     endmenu
 

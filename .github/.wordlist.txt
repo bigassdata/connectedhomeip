@@ -355,6 +355,8 @@ DCONF
 DCONFIG
 debianutils
 debugText
+decrypt
+decrypted
 DEDEDEDE
 deepnote
 DefaultOTAProviders
@@ -434,6 +436,7 @@ Dnsmasq
 dnsmasqd
 DNSSD
 DNSStubListener
+docbuild
 Dockerfile
 Dockerfiles
 Don'ts
@@ -984,6 +987,7 @@ otatesting
 otaURL
 OTBR
 otcli
+outform
 outgoingCommands
 OxygenConcentrationMeasurement
 OzoneConcentrationMeasurement
@@ -1023,6 +1027,7 @@ Pigweed
 PinCode
 pinrequest
 pkgconfig
+PKI
 plaintext
 PlatformManager
 PlatformManagerImpl
@@ -1143,6 +1148,7 @@ RPC
 RPCs
 RPi
 RPis
+RSA
 rsn
 RSSI
 RST
@@ -1179,6 +1185,7 @@ sdkconfig
 SDKs
 SDKTARGETSYSROOT
 sdl
+SecureCertDACProvider
 SED
 SEGGER
 semver
@@ -1205,6 +1212,7 @@ SHA
 ShadeConfiguration
 SHAs
 showDocumentation
+showsdks
 shubhamdp
 SIGINT
 SiLabs
@@ -1480,6 +1488,7 @@ xbef
 xc
 xcd
 Xcode
+xcodebuild
 xcodeproj
 xcworkspace
 xd
