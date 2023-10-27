@@ -25,3 +25,8 @@
 [submodule "third_party/jsoncpp/repo"]
 	path = third_party/jsoncpp/repo
 	url = https://github.com/open-source-parsers/jsoncpp.git
+[submodule "perfetto"]
+    path = third_party/perfetto/repo
+    url = https://github.com/google/perfetto.git
+    branch = master
+    platforms = linux,android,darwin
