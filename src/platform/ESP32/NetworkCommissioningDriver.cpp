@@ -124,6 +124,17 @@ CHIP_ERROR ESPWiFiDriver::Init(NetworkStatusChangeCallback * networkStatusChange
     mSavedNetwork.ssidLen = static_cast<uint8_t>(ssidLen);
 
     mStagingNetwork        = mSavedNetwork;
+
+    ChipLogProgress(DeviceLayer, "ZWB INIT STAGING NETWORK: %u", (unsigned int)mStagingNetwork.ssidLen);
+    if (mStagingNetwork.ssidLen >= 4)
+    {
+        ChipLogProgress(DeviceLayer, "ZWB INIT STAGING NETWORK: %c%c%c%c", 
+                        mStagingNetwork.ssid[0], 
+                        mStagingNetwork.ssid[1], 
+                        mStagingNetwork.ssid[2], 
+                        mStagingNetwork.ssid[3]);
+    }
+
     mpScanCallback         = nullptr;
     mpConnectCallback      = nullptr;
     mpStatusChangeCallback = networkStatusChangeCallback;
@@ -214,7 +225,8 @@ CHIP_ERROR ESPWiFiDriver::ConnectWiFiNetwork(const char * ssid, uint8_t ssidLen,
             return chip::DeviceLayer::Internal::ESP32Utils::MapError(err);
         }
     }
-
+    
+    ChipLogProgress(DeviceLayer, "Disable wifi");
     ReturnErrorOnFailure(ConnectivityMgr().SetWiFiStationMode(ConnectivityManager::kWiFiStationMode_Disabled));
 
     wifi_config_t wifiConfig;
@@ -225,13 +237,9 @@ CHIP_ERROR ESPWiFiDriver::ConnectWiFiNetwork(const char * ssid, uint8_t ssidLen,
     memcpy(wifiConfig.sta.password, key, std::min(keyLen, static_cast<uint8_t>(sizeof(wifiConfig.sta.password))));
 
     // Configure the ESP WiFi interface.
-    esp_err_t err = esp_wifi_set_config(WIFI_IF_STA, &wifiConfig);
-    if (err != ESP_OK)
-    {
-        ChipLogError(DeviceLayer, "esp_wifi_set_config() failed: %s", esp_err_to_name(err));
-        return chip::DeviceLayer::Internal::ESP32Utils::MapError(err);
-    }
+    ConnectivityMgrImpl().SetWiFiStationProvision(wifiConfig);
 
+    
     ReturnErrorOnFailure(ConnectivityMgr().SetWiFiStationMode(ConnectivityManager::kWiFiStationMode_Disabled));
     return ConnectivityMgr().SetWiFiStationMode(ConnectivityManager::kWiFiStationMode_Enabled);
 }
@@ -301,7 +309,8 @@ exit:
     }
     if (networkingStatus != Status::kSuccess)
     {
-        ChipLogError(NetworkProvisioning, "Failed to connect to WiFi network:%s", chip::ErrorStr(err));
+        ChipLogError(NetworkProvisioning, "Failed to connect to WiFi network: %s, status %u", chip::ErrorStr(err), 
+                     static_cast<unsigned int>(networkingStatus));
         mpConnectCallback = nullptr;
         callback->OnResult(networkingStatus, CharSpan(), 0);
     }
