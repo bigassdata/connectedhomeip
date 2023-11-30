@@ -124,17 +124,6 @@ CHIP_ERROR ESPWiFiDriver::Init(NetworkStatusChangeCallback * networkStatusChange
     mSavedNetwork.ssidLen = static_cast<uint8_t>(ssidLen);
 
     mStagingNetwork        = mSavedNetwork;
-
-    ChipLogProgress(DeviceLayer, "ZWB INIT STAGING NETWORK: %u", (unsigned int)mStagingNetwork.ssidLen);
-    if (mStagingNetwork.ssidLen >= 4)
-    {
-        ChipLogProgress(DeviceLayer, "ZWB INIT STAGING NETWORK: %c%c%c%c", 
-                        mStagingNetwork.ssid[0], 
-                        mStagingNetwork.ssid[1], 
-                        mStagingNetwork.ssid[2], 
-                        mStagingNetwork.ssid[3]);
-    }
-
     mpScanCallback         = nullptr;
     mpConnectCallback      = nullptr;
     mpStatusChangeCallback = networkStatusChangeCallback;
@@ -226,7 +215,6 @@ CHIP_ERROR ESPWiFiDriver::ConnectWiFiNetwork(const char * ssid, uint8_t ssidLen,
         }
     }
     
-    ChipLogProgress(DeviceLayer, "Disable wifi");
     ReturnErrorOnFailure(ConnectivityMgr().SetWiFiStationMode(ConnectivityManager::kWiFiStationMode_Disabled));
 
     wifi_config_t wifiConfig;
