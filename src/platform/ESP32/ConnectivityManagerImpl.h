@@ -1,4 +1,4 @@
-/*
+ /*
  *
  *    Copyright (c) 2020-2021 Project CHIP Authors
  *    Copyright (c) 2018 Nest Labs, Inc.
@@ -118,6 +118,11 @@ private:
     bool _CanStartWiFiScan();
     void _OnWiFiScanDone();
     void _OnWiFiStationProvisionChange();
+
+public:
+    CHIP_ERROR SetWiFiStationProvision(wifi_config_t&);
+
+private:
 
 #if CHIP_CONFIG_ENABLE_ICD_SERVER
     CHIP_ERROR _SetPollingInterval(System::Clock::Milliseconds32 pollingInterval);
