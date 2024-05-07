@@ -135,6 +135,7 @@ def BuildHostTarget():
         TargetPart('dishwasher', app=HostApp.DISHWASHER),
         TargetPart('refrigerator', app=HostApp.REFRIGERATOR),
         TargetPart('rvc', app=HostApp.RVC),
+        TargetPart('air-purifier', app=HostApp.AIR_PURIFIER),
     ]
 
     if (HostBoard.NATIVE.PlatformName() == 'darwin'):
@@ -396,6 +397,7 @@ def BuildInfineonTarget():
     # modifiers
     target.AppendModifier('ota', enable_ota_requestor=True)
     target.AppendModifier('updateimage', update_image=True)
+    target.AppendModifier('trustm', enable_trustm=True)
 
     return target
 
@@ -534,6 +536,7 @@ def Buildcc32xxTarget():
     # apps
     target.AppendFixedTargets([
         TargetPart('lock', app=cc32xxApp.LOCK),
+        TargetPart('air-purifier', app=cc32xxApp.AIR_PURIFIER),
 
     ])
 
@@ -615,6 +618,7 @@ def BuildTizenTarget():
     target.AppendModifier("no-wifi", enable_wifi=False)
     target.AppendModifier("asan", use_asan=True)
     target.AppendModifier("ubsan", use_ubsan=True)
+    target.AppendModifier('with-ui', with_ui=True)
 
     return target
 
