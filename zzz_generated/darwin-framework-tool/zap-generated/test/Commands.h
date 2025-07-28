@@ -40687,12 +40687,12 @@ public:
             err = TestWaitForTheCommissionedDeviceToBeRetrieved_0();
             break;
         case 1:
-            ChipLogProgress(chipTool, " ***** Test Step 1 : Read IdleModeInterval\n");
-            err = TestReadIdleModeInterval_1();
+            ChipLogProgress(chipTool, " ***** Test Step 1 : Read IdleModeDuration\n");
+            err = TestReadIdleModeDuration_1();
             break;
         case 2:
-            ChipLogProgress(chipTool, " ***** Test Step 2 : Read ActiveModeInterval\n");
-            err = TestReadActiveModeInterval_2();
+            ChipLogProgress(chipTool, " ***** Test Step 2 : Read ActiveModeDuration\n");
+            err = TestReadActiveModeDuration_2();
             break;
         case 3:
             ChipLogProgress(chipTool, " ***** Test Step 3 : Read ActiveModeThreshold\n");
@@ -40900,21 +40900,21 @@ private:
         return WaitForCommissionee("alpha", value);
     }
 
-    CHIP_ERROR TestReadIdleModeInterval_1()
+    CHIP_ERROR TestReadIdleModeDuration_1()
     {
 
         MTRBaseDevice * device = GetDevice("alpha");
         __auto_type * cluster = [[MTRBaseClusterICDManagement alloc] initWithDevice:device endpointID:@(0) queue:mCallbackQueue];
         VerifyOrReturnError(cluster != nil, CHIP_ERROR_INCORRECT_STATE);
 
-        [cluster readAttributeIdleModeIntervalWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable err) {
-            NSLog(@"Read IdleModeInterval Error: %@", err);
+        [cluster readAttributeIdleModeDurationWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable err) {
+            NSLog(@"Read IdleModeDuration Error: %@", err);
 
             VerifyOrReturn(CheckValue("status", err ? err.code : 0, 0));
 
             {
                 id actualValue = value;
-                VerifyOrReturn(CheckValue("IdleModeInterval", actualValue, 2UL));
+                VerifyOrReturn(CheckValue("IdleModeDuration", actualValue, 2UL));
             }
 
             NextTest();
@@ -40923,21 +40923,21 @@ private:
         return CHIP_NO_ERROR;
     }
 
-    CHIP_ERROR TestReadActiveModeInterval_2()
+    CHIP_ERROR TestReadActiveModeDuration_2()
     {
 
         MTRBaseDevice * device = GetDevice("alpha");
         __auto_type * cluster = [[MTRBaseClusterICDManagement alloc] initWithDevice:device endpointID:@(0) queue:mCallbackQueue];
         VerifyOrReturnError(cluster != nil, CHIP_ERROR_INCORRECT_STATE);
 
-        [cluster readAttributeActiveModeIntervalWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable err) {
-            NSLog(@"Read ActiveModeInterval Error: %@", err);
+        [cluster readAttributeActiveModeDurationWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable err) {
+            NSLog(@"Read ActiveModeDuration Error: %@", err);
 
             VerifyOrReturn(CheckValue("status", err ? err.code : 0, 0));
 
             {
                 id actualValue = value;
-                VerifyOrReturn(CheckValue("ActiveModeInterval", actualValue, 300UL));
+                VerifyOrReturn(CheckValue("ActiveModeDuration", actualValue, 300UL));
             }
 
             NextTest();
@@ -51881,7 +51881,7 @@ private:
 
             {
                 id actualValue = value;
-                VerifyOrReturn(CheckValue("ClusterRevision", actualValue, 1U));
+                VerifyOrReturn(CheckValue("ClusterRevision", actualValue, 2U));
             }
 
             VerifyOrReturn(CheckConstraintType("clusterRevision", "int16u", "int16u"));
@@ -63366,7 +63366,7 @@ private:
 
             {
                 id actualValue = value;
-                VerifyOrReturn(CheckValue("ClusterRevision", actualValue, 1U));
+                VerifyOrReturn(CheckValue("ClusterRevision", actualValue, 2U));
             }
 
             VerifyOrReturn(CheckConstraintType("clusterRevision", "int16u", "int16u"));
@@ -75138,7 +75138,7 @@ private:
 
             VerifyOrReturn(CheckValue("status", err ? err.code : 0, 0));
 
-            VerifyOrReturn(CheckConstraintType("applicationName", "char_string", "char_string"));
+            VerifyOrReturn(CheckConstraintType("applicationName", "long_char_string", "char_string"));
             VerifyOrReturn(CheckConstraintMaxLength("applicationName", value, 256));
             NextTest();
         }];
@@ -88978,7 +88978,7 @@ private:
 
             {
                 id actualValue = value;
-                VerifyOrReturn(CheckValue("ClusterRevision", actualValue, 1U));
+                VerifyOrReturn(CheckValue("ClusterRevision", actualValue, 2U));
             }
 
             VerifyOrReturn(CheckConstraintType("clusterRevision", "int16u", "int16u"));
@@ -89414,7 +89414,7 @@ private:
 
             {
                 id actualValue = value;
-                VerifyOrReturn(CheckValue("ClusterRevision", actualValue, 1U));
+                VerifyOrReturn(CheckValue("ClusterRevision", actualValue, 2U));
             }
 
             VerifyOrReturn(CheckConstraintType("clusterRevision", "int16u", "int16u"));
@@ -92087,7 +92087,7 @@ private:
 
             {
                 id actualValue = value;
-                VerifyOrReturn(CheckValue("ClusterRevision", actualValue, 1U));
+                VerifyOrReturn(CheckValue("ClusterRevision", actualValue, 2U));
             }
 
             VerifyOrReturn(CheckConstraintType("clusterRevision", "int16u", "int16u"));

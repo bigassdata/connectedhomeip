@@ -25533,6 +25533,9 @@ public:
 | * LastNetworkingStatus                                              | 0x0005 |
 | * LastNetworkID                                                     | 0x0006 |
 | * LastConnectErrorValue                                             | 0x0007 |
+| * SupportedWiFiBands                                                | 0x0008 |
+| * SupportedThreadFeatures                                           | 0x0009 |
+| * ThreadVersion                                                     | 0x000A |
 | * GeneratedCommandList                                              | 0xFFF8 |
 | * AcceptedCommandList                                               | 0xFFF9 |
 | * EventList                                                         | 0xFFFA |
@@ -26594,6 +26597,252 @@ public:
             subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
             reportHandler:^(NSNumber * _Nullable value, NSError * _Nullable error) {
                 NSLog(@"NetworkCommissioning.LastConnectErrorValue response %@", [value description]);
+                if (error == nil) {
+                    RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
+                } else {
+                    RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
+                }
+                SetCommandExitStatus(error);
+            }];
+
+        return CHIP_NO_ERROR;
+    }
+};
+
+/*
+ * Attribute SupportedWiFiBands
+ */
+class ReadNetworkCommissioningSupportedWiFiBands : public ReadAttribute {
+public:
+    ReadNetworkCommissioningSupportedWiFiBands()
+        : ReadAttribute("supported-wi-fi-bands")
+    {
+    }
+
+    ~ReadNetworkCommissioningSupportedWiFiBands()
+    {
+    }
+
+    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
+    {
+        constexpr chip::ClusterId clusterId = chip::app::Clusters::NetworkCommissioning::Id;
+        constexpr chip::AttributeId attributeId = chip::app::Clusters::NetworkCommissioning::Attributes::SupportedWiFiBands::Id;
+
+        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReadAttribute (0x%08" PRIX32 ") on endpoint %u", endpointId, clusterId, attributeId);
+
+        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
+        __auto_type * cluster = [[MTRBaseClusterNetworkCommissioning alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
+        [cluster readAttributeSupportedWiFiBandsWithCompletion:^(NSArray * _Nullable value, NSError * _Nullable error) {
+            NSLog(@"NetworkCommissioning.SupportedWiFiBands response %@", [value description]);
+            if (error == nil) {
+                RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
+            } else {
+                LogNSError("NetworkCommissioning SupportedWiFiBands read Error", error);
+                RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
+            }
+            SetCommandExitStatus(error);
+        }];
+        return CHIP_NO_ERROR;
+    }
+};
+
+class SubscribeAttributeNetworkCommissioningSupportedWiFiBands : public SubscribeAttribute {
+public:
+    SubscribeAttributeNetworkCommissioningSupportedWiFiBands()
+        : SubscribeAttribute("supported-wi-fi-bands")
+    {
+    }
+
+    ~SubscribeAttributeNetworkCommissioningSupportedWiFiBands()
+    {
+    }
+
+    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
+    {
+        constexpr chip::ClusterId clusterId = chip::app::Clusters::NetworkCommissioning::Id;
+        constexpr chip::CommandId attributeId = chip::app::Clusters::NetworkCommissioning::Attributes::SupportedWiFiBands::Id;
+
+        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReportAttribute (0x%08" PRIX32 ") on endpoint %u", clusterId, attributeId, endpointId);
+        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
+        __auto_type * cluster = [[MTRBaseClusterNetworkCommissioning alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
+        __auto_type * params = [[MTRSubscribeParams alloc] initWithMinInterval:@(mMinInterval) maxInterval:@(mMaxInterval)];
+        if (mKeepSubscriptions.HasValue()) {
+            params.replaceExistingSubscriptions = !mKeepSubscriptions.Value();
+        }
+        if (mFabricFiltered.HasValue()) {
+            params.filterByFabric = mFabricFiltered.Value();
+        }
+        if (mAutoResubscribe.HasValue()) {
+            params.resubscribeAutomatically = mAutoResubscribe.Value();
+        }
+        [cluster subscribeAttributeSupportedWiFiBandsWithParams:params
+            subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
+            reportHandler:^(NSArray * _Nullable value, NSError * _Nullable error) {
+                NSLog(@"NetworkCommissioning.SupportedWiFiBands response %@", [value description]);
+                if (error == nil) {
+                    RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
+                } else {
+                    RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
+                }
+                SetCommandExitStatus(error);
+            }];
+
+        return CHIP_NO_ERROR;
+    }
+};
+
+/*
+ * Attribute SupportedThreadFeatures
+ */
+class ReadNetworkCommissioningSupportedThreadFeatures : public ReadAttribute {
+public:
+    ReadNetworkCommissioningSupportedThreadFeatures()
+        : ReadAttribute("supported-thread-features")
+    {
+    }
+
+    ~ReadNetworkCommissioningSupportedThreadFeatures()
+    {
+    }
+
+    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
+    {
+        constexpr chip::ClusterId clusterId = chip::app::Clusters::NetworkCommissioning::Id;
+        constexpr chip::AttributeId attributeId = chip::app::Clusters::NetworkCommissioning::Attributes::SupportedThreadFeatures::Id;
+
+        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReadAttribute (0x%08" PRIX32 ") on endpoint %u", endpointId, clusterId, attributeId);
+
+        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
+        __auto_type * cluster = [[MTRBaseClusterNetworkCommissioning alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
+        [cluster readAttributeSupportedThreadFeaturesWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable error) {
+            NSLog(@"NetworkCommissioning.SupportedThreadFeatures response %@", [value description]);
+            if (error == nil) {
+                RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
+            } else {
+                LogNSError("NetworkCommissioning SupportedThreadFeatures read Error", error);
+                RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
+            }
+            SetCommandExitStatus(error);
+        }];
+        return CHIP_NO_ERROR;
+    }
+};
+
+class SubscribeAttributeNetworkCommissioningSupportedThreadFeatures : public SubscribeAttribute {
+public:
+    SubscribeAttributeNetworkCommissioningSupportedThreadFeatures()
+        : SubscribeAttribute("supported-thread-features")
+    {
+    }
+
+    ~SubscribeAttributeNetworkCommissioningSupportedThreadFeatures()
+    {
+    }
+
+    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
+    {
+        constexpr chip::ClusterId clusterId = chip::app::Clusters::NetworkCommissioning::Id;
+        constexpr chip::CommandId attributeId = chip::app::Clusters::NetworkCommissioning::Attributes::SupportedThreadFeatures::Id;
+
+        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReportAttribute (0x%08" PRIX32 ") on endpoint %u", clusterId, attributeId, endpointId);
+        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
+        __auto_type * cluster = [[MTRBaseClusterNetworkCommissioning alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
+        __auto_type * params = [[MTRSubscribeParams alloc] initWithMinInterval:@(mMinInterval) maxInterval:@(mMaxInterval)];
+        if (mKeepSubscriptions.HasValue()) {
+            params.replaceExistingSubscriptions = !mKeepSubscriptions.Value();
+        }
+        if (mFabricFiltered.HasValue()) {
+            params.filterByFabric = mFabricFiltered.Value();
+        }
+        if (mAutoResubscribe.HasValue()) {
+            params.resubscribeAutomatically = mAutoResubscribe.Value();
+        }
+        [cluster subscribeAttributeSupportedThreadFeaturesWithParams:params
+            subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
+            reportHandler:^(NSNumber * _Nullable value, NSError * _Nullable error) {
+                NSLog(@"NetworkCommissioning.SupportedThreadFeatures response %@", [value description]);
+                if (error == nil) {
+                    RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
+                } else {
+                    RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
+                }
+                SetCommandExitStatus(error);
+            }];
+
+        return CHIP_NO_ERROR;
+    }
+};
+
+/*
+ * Attribute ThreadVersion
+ */
+class ReadNetworkCommissioningThreadVersion : public ReadAttribute {
+public:
+    ReadNetworkCommissioningThreadVersion()
+        : ReadAttribute("thread-version")
+    {
+    }
+
+    ~ReadNetworkCommissioningThreadVersion()
+    {
+    }
+
+    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
+    {
+        constexpr chip::ClusterId clusterId = chip::app::Clusters::NetworkCommissioning::Id;
+        constexpr chip::AttributeId attributeId = chip::app::Clusters::NetworkCommissioning::Attributes::ThreadVersion::Id;
+
+        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReadAttribute (0x%08" PRIX32 ") on endpoint %u", endpointId, clusterId, attributeId);
+
+        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
+        __auto_type * cluster = [[MTRBaseClusterNetworkCommissioning alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
+        [cluster readAttributeThreadVersionWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable error) {
+            NSLog(@"NetworkCommissioning.ThreadVersion response %@", [value description]);
+            if (error == nil) {
+                RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
+            } else {
+                LogNSError("NetworkCommissioning ThreadVersion read Error", error);
+                RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
+            }
+            SetCommandExitStatus(error);
+        }];
+        return CHIP_NO_ERROR;
+    }
+};
+
+class SubscribeAttributeNetworkCommissioningThreadVersion : public SubscribeAttribute {
+public:
+    SubscribeAttributeNetworkCommissioningThreadVersion()
+        : SubscribeAttribute("thread-version")
+    {
+    }
+
+    ~SubscribeAttributeNetworkCommissioningThreadVersion()
+    {
+    }
+
+    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
+    {
+        constexpr chip::ClusterId clusterId = chip::app::Clusters::NetworkCommissioning::Id;
+        constexpr chip::CommandId attributeId = chip::app::Clusters::NetworkCommissioning::Attributes::ThreadVersion::Id;
+
+        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReportAttribute (0x%08" PRIX32 ") on endpoint %u", clusterId, attributeId, endpointId);
+        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
+        __auto_type * cluster = [[MTRBaseClusterNetworkCommissioning alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
+        __auto_type * params = [[MTRSubscribeParams alloc] initWithMinInterval:@(mMinInterval) maxInterval:@(mMaxInterval)];
+        if (mKeepSubscriptions.HasValue()) {
+            params.replaceExistingSubscriptions = !mKeepSubscriptions.Value();
+        }
+        if (mFabricFiltered.HasValue()) {
+            params.filterByFabric = mFabricFiltered.Value();
+        }
+        if (mAutoResubscribe.HasValue()) {
+            params.resubscribeAutomatically = mAutoResubscribe.Value();
+        }
+        [cluster subscribeAttributeThreadVersionWithParams:params
+            subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
+            reportHandler:^(NSNumber * _Nullable value, NSError * _Nullable error) {
+                NSLog(@"NetworkCommissioning.ThreadVersion response %@", [value description]);
                 if (error == nil) {
                     RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
                 } else {
@@ -48682,12 +48931,14 @@ public:
 | * StayActiveRequest                                                 |   0x03 |
 |------------------------------------------------------------------------------|
 | Attributes:                                                         |        |
-| * IdleModeInterval                                                  | 0x0000 |
-| * ActiveModeInterval                                                | 0x0001 |
+| * IdleModeDuration                                                  | 0x0000 |
+| * ActiveModeDuration                                                | 0x0001 |
 | * ActiveModeThreshold                                               | 0x0002 |
 | * RegisteredClients                                                 | 0x0003 |
 | * ICDCounter                                                        | 0x0004 |
 | * ClientsSupportedPerFabric                                         | 0x0005 |
+| * UserActiveModeTriggerHint                                         | 0x0006 |
+| * UserActiveModeTriggerInstruction                                  | 0x0007 |
 | * GeneratedCommandList                                              | 0xFFF8 |
 | * AcceptedCommandList                                               | 0xFFF9 |
 | * EventList                                                         | 0xFFFA |
@@ -48868,34 +49119,34 @@ private:
 #if MTR_ENABLE_PROVISIONAL
 
 /*
- * Attribute IdleModeInterval
+ * Attribute IdleModeDuration
  */
-class ReadIcdManagementIdleModeInterval : public ReadAttribute {
+class ReadIcdManagementIdleModeDuration : public ReadAttribute {
 public:
-    ReadIcdManagementIdleModeInterval()
-        : ReadAttribute("idle-mode-interval")
+    ReadIcdManagementIdleModeDuration()
+        : ReadAttribute("idle-mode-duration")
     {
     }
 
-    ~ReadIcdManagementIdleModeInterval()
+    ~ReadIcdManagementIdleModeDuration()
     {
     }
 
     CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
     {
         constexpr chip::ClusterId clusterId = chip::app::Clusters::IcdManagement::Id;
-        constexpr chip::AttributeId attributeId = chip::app::Clusters::IcdManagement::Attributes::IdleModeInterval::Id;
+        constexpr chip::AttributeId attributeId = chip::app::Clusters::IcdManagement::Attributes::IdleModeDuration::Id;
 
         ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReadAttribute (0x%08" PRIX32 ") on endpoint %u", endpointId, clusterId, attributeId);
 
         dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
         __auto_type * cluster = [[MTRBaseClusterICDManagement alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
-        [cluster readAttributeIdleModeIntervalWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable error) {
-            NSLog(@"ICDManagement.IdleModeInterval response %@", [value description]);
+        [cluster readAttributeIdleModeDurationWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable error) {
+            NSLog(@"ICDManagement.IdleModeDuration response %@", [value description]);
             if (error == nil) {
                 RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
             } else {
-                LogNSError("ICDManagement IdleModeInterval read Error", error);
+                LogNSError("ICDManagement IdleModeDuration read Error", error);
                 RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
             }
             SetCommandExitStatus(error);
@@ -48904,21 +49155,21 @@ public:
     }
 };
 
-class SubscribeAttributeIcdManagementIdleModeInterval : public SubscribeAttribute {
+class SubscribeAttributeIcdManagementIdleModeDuration : public SubscribeAttribute {
 public:
-    SubscribeAttributeIcdManagementIdleModeInterval()
-        : SubscribeAttribute("idle-mode-interval")
+    SubscribeAttributeIcdManagementIdleModeDuration()
+        : SubscribeAttribute("idle-mode-duration")
     {
     }
 
-    ~SubscribeAttributeIcdManagementIdleModeInterval()
+    ~SubscribeAttributeIcdManagementIdleModeDuration()
     {
     }
 
     CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
     {
         constexpr chip::ClusterId clusterId = chip::app::Clusters::IcdManagement::Id;
-        constexpr chip::CommandId attributeId = chip::app::Clusters::IcdManagement::Attributes::IdleModeInterval::Id;
+        constexpr chip::CommandId attributeId = chip::app::Clusters::IcdManagement::Attributes::IdleModeDuration::Id;
 
         ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReportAttribute (0x%08" PRIX32 ") on endpoint %u", clusterId, attributeId, endpointId);
         dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
@@ -48933,10 +49184,10 @@ public:
         if (mAutoResubscribe.HasValue()) {
             params.resubscribeAutomatically = mAutoResubscribe.Value();
         }
-        [cluster subscribeAttributeIdleModeIntervalWithParams:params
+        [cluster subscribeAttributeIdleModeDurationWithParams:params
             subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
             reportHandler:^(NSNumber * _Nullable value, NSError * _Nullable error) {
-                NSLog(@"ICDManagement.IdleModeInterval response %@", [value description]);
+                NSLog(@"ICDManagement.IdleModeDuration response %@", [value description]);
                 if (error == nil) {
                     RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
                 } else {
@@ -48953,34 +49204,34 @@ public:
 #if MTR_ENABLE_PROVISIONAL
 
 /*
- * Attribute ActiveModeInterval
+ * Attribute ActiveModeDuration
  */
-class ReadIcdManagementActiveModeInterval : public ReadAttribute {
+class ReadIcdManagementActiveModeDuration : public ReadAttribute {
 public:
-    ReadIcdManagementActiveModeInterval()
-        : ReadAttribute("active-mode-interval")
+    ReadIcdManagementActiveModeDuration()
+        : ReadAttribute("active-mode-duration")
     {
     }
 
-    ~ReadIcdManagementActiveModeInterval()
+    ~ReadIcdManagementActiveModeDuration()
     {
     }
 
     CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
     {
         constexpr chip::ClusterId clusterId = chip::app::Clusters::IcdManagement::Id;
-        constexpr chip::AttributeId attributeId = chip::app::Clusters::IcdManagement::Attributes::ActiveModeInterval::Id;
+        constexpr chip::AttributeId attributeId = chip::app::Clusters::IcdManagement::Attributes::ActiveModeDuration::Id;
 
         ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReadAttribute (0x%08" PRIX32 ") on endpoint %u", endpointId, clusterId, attributeId);
 
         dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
         __auto_type * cluster = [[MTRBaseClusterICDManagement alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
-        [cluster readAttributeActiveModeIntervalWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable error) {
-            NSLog(@"ICDManagement.ActiveModeInterval response %@", [value description]);
+        [cluster readAttributeActiveModeDurationWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable error) {
+            NSLog(@"ICDManagement.ActiveModeDuration response %@", [value description]);
             if (error == nil) {
                 RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
             } else {
-                LogNSError("ICDManagement ActiveModeInterval read Error", error);
+                LogNSError("ICDManagement ActiveModeDuration read Error", error);
                 RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
             }
             SetCommandExitStatus(error);
@@ -48989,21 +49240,21 @@ public:
     }
 };
 
-class SubscribeAttributeIcdManagementActiveModeInterval : public SubscribeAttribute {
+class SubscribeAttributeIcdManagementActiveModeDuration : public SubscribeAttribute {
 public:
-    SubscribeAttributeIcdManagementActiveModeInterval()
-        : SubscribeAttribute("active-mode-interval")
+    SubscribeAttributeIcdManagementActiveModeDuration()
+        : SubscribeAttribute("active-mode-duration")
     {
     }
 
-    ~SubscribeAttributeIcdManagementActiveModeInterval()
+    ~SubscribeAttributeIcdManagementActiveModeDuration()
     {
     }
 
     CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
     {
         constexpr chip::ClusterId clusterId = chip::app::Clusters::IcdManagement::Id;
-        constexpr chip::CommandId attributeId = chip::app::Clusters::IcdManagement::Attributes::ActiveModeInterval::Id;
+        constexpr chip::CommandId attributeId = chip::app::Clusters::IcdManagement::Attributes::ActiveModeDuration::Id;
 
         ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReportAttribute (0x%08" PRIX32 ") on endpoint %u", clusterId, attributeId, endpointId);
         dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
@@ -49018,10 +49269,10 @@ public:
         if (mAutoResubscribe.HasValue()) {
             params.resubscribeAutomatically = mAutoResubscribe.Value();
         }
-        [cluster subscribeAttributeActiveModeIntervalWithParams:params
+        [cluster subscribeAttributeActiveModeDurationWithParams:params
             subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
             reportHandler:^(NSNumber * _Nullable value, NSError * _Nullable error) {
-                NSLog(@"ICDManagement.ActiveModeInterval response %@", [value description]);
+                NSLog(@"ICDManagement.ActiveModeDuration response %@", [value description]);
                 if (error == nil) {
                     RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
                 } else {
@@ -49366,6 +49617,176 @@ public:
             subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
             reportHandler:^(NSNumber * _Nullable value, NSError * _Nullable error) {
                 NSLog(@"ICDManagement.ClientsSupportedPerFabric response %@", [value description]);
+                if (error == nil) {
+                    RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
+                } else {
+                    RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
+                }
+                SetCommandExitStatus(error);
+            }];
+
+        return CHIP_NO_ERROR;
+    }
+};
+
+#endif // MTR_ENABLE_PROVISIONAL
+#if MTR_ENABLE_PROVISIONAL
+
+/*
+ * Attribute UserActiveModeTriggerHint
+ */
+class ReadIcdManagementUserActiveModeTriggerHint : public ReadAttribute {
+public:
+    ReadIcdManagementUserActiveModeTriggerHint()
+        : ReadAttribute("user-active-mode-trigger-hint")
+    {
+    }
+
+    ~ReadIcdManagementUserActiveModeTriggerHint()
+    {
+    }
+
+    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
+    {
+        constexpr chip::ClusterId clusterId = chip::app::Clusters::IcdManagement::Id;
+        constexpr chip::AttributeId attributeId = chip::app::Clusters::IcdManagement::Attributes::UserActiveModeTriggerHint::Id;
+
+        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReadAttribute (0x%08" PRIX32 ") on endpoint %u", endpointId, clusterId, attributeId);
+
+        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
+        __auto_type * cluster = [[MTRBaseClusterICDManagement alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
+        [cluster readAttributeUserActiveModeTriggerHintWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable error) {
+            NSLog(@"ICDManagement.UserActiveModeTriggerHint response %@", [value description]);
+            if (error == nil) {
+                RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
+            } else {
+                LogNSError("ICDManagement UserActiveModeTriggerHint read Error", error);
+                RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
+            }
+            SetCommandExitStatus(error);
+        }];
+        return CHIP_NO_ERROR;
+    }
+};
+
+class SubscribeAttributeIcdManagementUserActiveModeTriggerHint : public SubscribeAttribute {
+public:
+    SubscribeAttributeIcdManagementUserActiveModeTriggerHint()
+        : SubscribeAttribute("user-active-mode-trigger-hint")
+    {
+    }
+
+    ~SubscribeAttributeIcdManagementUserActiveModeTriggerHint()
+    {
+    }
+
+    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
+    {
+        constexpr chip::ClusterId clusterId = chip::app::Clusters::IcdManagement::Id;
+        constexpr chip::CommandId attributeId = chip::app::Clusters::IcdManagement::Attributes::UserActiveModeTriggerHint::Id;
+
+        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReportAttribute (0x%08" PRIX32 ") on endpoint %u", clusterId, attributeId, endpointId);
+        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
+        __auto_type * cluster = [[MTRBaseClusterICDManagement alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
+        __auto_type * params = [[MTRSubscribeParams alloc] initWithMinInterval:@(mMinInterval) maxInterval:@(mMaxInterval)];
+        if (mKeepSubscriptions.HasValue()) {
+            params.replaceExistingSubscriptions = !mKeepSubscriptions.Value();
+        }
+        if (mFabricFiltered.HasValue()) {
+            params.filterByFabric = mFabricFiltered.Value();
+        }
+        if (mAutoResubscribe.HasValue()) {
+            params.resubscribeAutomatically = mAutoResubscribe.Value();
+        }
+        [cluster subscribeAttributeUserActiveModeTriggerHintWithParams:params
+            subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
+            reportHandler:^(NSNumber * _Nullable value, NSError * _Nullable error) {
+                NSLog(@"ICDManagement.UserActiveModeTriggerHint response %@", [value description]);
+                if (error == nil) {
+                    RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
+                } else {
+                    RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
+                }
+                SetCommandExitStatus(error);
+            }];
+
+        return CHIP_NO_ERROR;
+    }
+};
+
+#endif // MTR_ENABLE_PROVISIONAL
+#if MTR_ENABLE_PROVISIONAL
+
+/*
+ * Attribute UserActiveModeTriggerInstruction
+ */
+class ReadIcdManagementUserActiveModeTriggerInstruction : public ReadAttribute {
+public:
+    ReadIcdManagementUserActiveModeTriggerInstruction()
+        : ReadAttribute("user-active-mode-trigger-instruction")
+    {
+    }
+
+    ~ReadIcdManagementUserActiveModeTriggerInstruction()
+    {
+    }
+
+    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
+    {
+        constexpr chip::ClusterId clusterId = chip::app::Clusters::IcdManagement::Id;
+        constexpr chip::AttributeId attributeId = chip::app::Clusters::IcdManagement::Attributes::UserActiveModeTriggerInstruction::Id;
+
+        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReadAttribute (0x%08" PRIX32 ") on endpoint %u", endpointId, clusterId, attributeId);
+
+        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
+        __auto_type * cluster = [[MTRBaseClusterICDManagement alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
+        [cluster readAttributeUserActiveModeTriggerInstructionWithCompletion:^(NSString * _Nullable value, NSError * _Nullable error) {
+            NSLog(@"ICDManagement.UserActiveModeTriggerInstruction response %@", [value description]);
+            if (error == nil) {
+                RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
+            } else {
+                LogNSError("ICDManagement UserActiveModeTriggerInstruction read Error", error);
+                RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
+            }
+            SetCommandExitStatus(error);
+        }];
+        return CHIP_NO_ERROR;
+    }
+};
+
+class SubscribeAttributeIcdManagementUserActiveModeTriggerInstruction : public SubscribeAttribute {
+public:
+    SubscribeAttributeIcdManagementUserActiveModeTriggerInstruction()
+        : SubscribeAttribute("user-active-mode-trigger-instruction")
+    {
+    }
+
+    ~SubscribeAttributeIcdManagementUserActiveModeTriggerInstruction()
+    {
+    }
+
+    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
+    {
+        constexpr chip::ClusterId clusterId = chip::app::Clusters::IcdManagement::Id;
+        constexpr chip::CommandId attributeId = chip::app::Clusters::IcdManagement::Attributes::UserActiveModeTriggerInstruction::Id;
+
+        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReportAttribute (0x%08" PRIX32 ") on endpoint %u", clusterId, attributeId, endpointId);
+        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
+        __auto_type * cluster = [[MTRBaseClusterICDManagement alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
+        __auto_type * params = [[MTRSubscribeParams alloc] initWithMinInterval:@(mMinInterval) maxInterval:@(mMaxInterval)];
+        if (mKeepSubscriptions.HasValue()) {
+            params.replaceExistingSubscriptions = !mKeepSubscriptions.Value();
+        }
+        if (mFabricFiltered.HasValue()) {
+            params.filterByFabric = mFabricFiltered.Value();
+        }
+        if (mAutoResubscribe.HasValue()) {
+            params.resubscribeAutomatically = mAutoResubscribe.Value();
+        }
+        [cluster subscribeAttributeUserActiveModeTriggerInstructionWithParams:params
+            subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
+            reportHandler:^(NSString * _Nullable value, NSError * _Nullable error) {
+                NSLog(@"ICDManagement.UserActiveModeTriggerInstruction response %@", [value description]);
                 if (error == nil) {
                     RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
                 } else {
@@ -54037,7 +54458,6 @@ public:
 | Attributes:                                                         |        |
 | * SupportedModes                                                    | 0x0000 |
 | * CurrentMode                                                       | 0x0001 |
-| * StartUpMode                                                       | 0x0002 |
 | * OnMode                                                            | 0x0003 |
 | * GeneratedCommandList                                              | 0xFFF8 |
 | * AcceptedCommandList                                               | 0xFFF9 |
@@ -54262,135 +54682,6 @@ public:
             subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
             reportHandler:^(NSNumber * _Nullable value, NSError * _Nullable error) {
                 NSLog(@"RVCRunMode.CurrentMode response %@", [value description]);
-                if (error == nil) {
-                    RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
-                } else {
-                    RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
-                }
-                SetCommandExitStatus(error);
-            }];
-
-        return CHIP_NO_ERROR;
-    }
-};
-
-#endif // MTR_ENABLE_PROVISIONAL
-#if MTR_ENABLE_PROVISIONAL
-
-/*
- * Attribute StartUpMode
- */
-class ReadRvcRunModeStartUpMode : public ReadAttribute {
-public:
-    ReadRvcRunModeStartUpMode()
-        : ReadAttribute("start-up-mode")
-    {
-    }
-
-    ~ReadRvcRunModeStartUpMode()
-    {
-    }
-
-    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
-    {
-        constexpr chip::ClusterId clusterId = chip::app::Clusters::RvcRunMode::Id;
-        constexpr chip::AttributeId attributeId = chip::app::Clusters::RvcRunMode::Attributes::StartUpMode::Id;
-
-        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReadAttribute (0x%08" PRIX32 ") on endpoint %u", endpointId, clusterId, attributeId);
-
-        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
-        __auto_type * cluster = [[MTRBaseClusterRVCRunMode alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
-        [cluster readAttributeStartUpModeWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable error) {
-            NSLog(@"RVCRunMode.StartUpMode response %@", [value description]);
-            if (error == nil) {
-                RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
-            } else {
-                LogNSError("RVCRunMode StartUpMode read Error", error);
-                RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
-            }
-            SetCommandExitStatus(error);
-        }];
-        return CHIP_NO_ERROR;
-    }
-};
-
-class WriteRvcRunModeStartUpMode : public WriteAttribute {
-public:
-    WriteRvcRunModeStartUpMode()
-        : WriteAttribute("start-up-mode")
-    {
-        AddArgument("attr-name", "start-up-mode");
-        AddArgument("attr-value", 0, UINT8_MAX, &mValue);
-        WriteAttribute::AddArguments();
-    }
-
-    ~WriteRvcRunModeStartUpMode()
-    {
-    }
-
-    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
-    {
-        constexpr chip::ClusterId clusterId = chip::app::Clusters::RvcRunMode::Id;
-        constexpr chip::AttributeId attributeId = chip::app::Clusters::RvcRunMode::Attributes::StartUpMode::Id;
-
-        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") WriteAttribute (0x%08" PRIX32 ") on endpoint %u", clusterId, attributeId, endpointId);
-        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
-        __auto_type * cluster = [[MTRBaseClusterRVCRunMode alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
-        __auto_type * params = [[MTRWriteParams alloc] init];
-        params.timedWriteTimeout = mTimedInteractionTimeoutMs.HasValue() ? [NSNumber numberWithUnsignedShort:mTimedInteractionTimeoutMs.Value()] : nil;
-        params.dataVersion = mDataVersion.HasValue() ? [NSNumber numberWithUnsignedInt:mDataVersion.Value()] : nil;
-        NSNumber * _Nullable value = nil;
-        if (!mValue.IsNull()) {
-            value = [NSNumber numberWithUnsignedChar:mValue.Value()];
-        }
-
-        [cluster writeAttributeStartUpModeWithValue:value params:params completion:^(NSError * _Nullable error) {
-            if (error != nil) {
-                LogNSError("RVCRunMode StartUpMode write Error", error);
-                RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
-            }
-            SetCommandExitStatus(error);
-        }];
-        return CHIP_NO_ERROR;
-    }
-
-private:
-    chip::app::DataModel::Nullable<uint8_t> mValue;
-};
-
-class SubscribeAttributeRvcRunModeStartUpMode : public SubscribeAttribute {
-public:
-    SubscribeAttributeRvcRunModeStartUpMode()
-        : SubscribeAttribute("start-up-mode")
-    {
-    }
-
-    ~SubscribeAttributeRvcRunModeStartUpMode()
-    {
-    }
-
-    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
-    {
-        constexpr chip::ClusterId clusterId = chip::app::Clusters::RvcRunMode::Id;
-        constexpr chip::CommandId attributeId = chip::app::Clusters::RvcRunMode::Attributes::StartUpMode::Id;
-
-        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReportAttribute (0x%08" PRIX32 ") on endpoint %u", clusterId, attributeId, endpointId);
-        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
-        __auto_type * cluster = [[MTRBaseClusterRVCRunMode alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
-        __auto_type * params = [[MTRSubscribeParams alloc] initWithMinInterval:@(mMinInterval) maxInterval:@(mMaxInterval)];
-        if (mKeepSubscriptions.HasValue()) {
-            params.replaceExistingSubscriptions = !mKeepSubscriptions.Value();
-        }
-        if (mFabricFiltered.HasValue()) {
-            params.filterByFabric = mFabricFiltered.Value();
-        }
-        if (mAutoResubscribe.HasValue()) {
-            params.resubscribeAutomatically = mAutoResubscribe.Value();
-        }
-        [cluster subscribeAttributeStartUpModeWithParams:params
-            subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
-            reportHandler:^(NSNumber * _Nullable value, NSError * _Nullable error) {
-                NSLog(@"RVCRunMode.StartUpMode response %@", [value description]);
                 if (error == nil) {
                     RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
                 } else {
@@ -55054,7 +55345,6 @@ public:
 | Attributes:                                                         |        |
 | * SupportedModes                                                    | 0x0000 |
 | * CurrentMode                                                       | 0x0001 |
-| * StartUpMode                                                       | 0x0002 |
 | * OnMode                                                            | 0x0003 |
 | * GeneratedCommandList                                              | 0xFFF8 |
 | * AcceptedCommandList                                               | 0xFFF9 |
@@ -55279,135 +55569,6 @@ public:
             subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
             reportHandler:^(NSNumber * _Nullable value, NSError * _Nullable error) {
                 NSLog(@"RVCCleanMode.CurrentMode response %@", [value description]);
-                if (error == nil) {
-                    RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
-                } else {
-                    RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
-                }
-                SetCommandExitStatus(error);
-            }];
-
-        return CHIP_NO_ERROR;
-    }
-};
-
-#endif // MTR_ENABLE_PROVISIONAL
-#if MTR_ENABLE_PROVISIONAL
-
-/*
- * Attribute StartUpMode
- */
-class ReadRvcCleanModeStartUpMode : public ReadAttribute {
-public:
-    ReadRvcCleanModeStartUpMode()
-        : ReadAttribute("start-up-mode")
-    {
-    }
-
-    ~ReadRvcCleanModeStartUpMode()
-    {
-    }
-
-    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
-    {
-        constexpr chip::ClusterId clusterId = chip::app::Clusters::RvcCleanMode::Id;
-        constexpr chip::AttributeId attributeId = chip::app::Clusters::RvcCleanMode::Attributes::StartUpMode::Id;
-
-        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReadAttribute (0x%08" PRIX32 ") on endpoint %u", endpointId, clusterId, attributeId);
-
-        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
-        __auto_type * cluster = [[MTRBaseClusterRVCCleanMode alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
-        [cluster readAttributeStartUpModeWithCompletion:^(NSNumber * _Nullable value, NSError * _Nullable error) {
-            NSLog(@"RVCCleanMode.StartUpMode response %@", [value description]);
-            if (error == nil) {
-                RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
-            } else {
-                LogNSError("RVCCleanMode StartUpMode read Error", error);
-                RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
-            }
-            SetCommandExitStatus(error);
-        }];
-        return CHIP_NO_ERROR;
-    }
-};
-
-class WriteRvcCleanModeStartUpMode : public WriteAttribute {
-public:
-    WriteRvcCleanModeStartUpMode()
-        : WriteAttribute("start-up-mode")
-    {
-        AddArgument("attr-name", "start-up-mode");
-        AddArgument("attr-value", 0, UINT8_MAX, &mValue);
-        WriteAttribute::AddArguments();
-    }
-
-    ~WriteRvcCleanModeStartUpMode()
-    {
-    }
-
-    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
-    {
-        constexpr chip::ClusterId clusterId = chip::app::Clusters::RvcCleanMode::Id;
-        constexpr chip::AttributeId attributeId = chip::app::Clusters::RvcCleanMode::Attributes::StartUpMode::Id;
-
-        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") WriteAttribute (0x%08" PRIX32 ") on endpoint %u", clusterId, attributeId, endpointId);
-        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
-        __auto_type * cluster = [[MTRBaseClusterRVCCleanMode alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
-        __auto_type * params = [[MTRWriteParams alloc] init];
-        params.timedWriteTimeout = mTimedInteractionTimeoutMs.HasValue() ? [NSNumber numberWithUnsignedShort:mTimedInteractionTimeoutMs.Value()] : nil;
-        params.dataVersion = mDataVersion.HasValue() ? [NSNumber numberWithUnsignedInt:mDataVersion.Value()] : nil;
-        NSNumber * _Nullable value = nil;
-        if (!mValue.IsNull()) {
-            value = [NSNumber numberWithUnsignedChar:mValue.Value()];
-        }
-
-        [cluster writeAttributeStartUpModeWithValue:value params:params completion:^(NSError * _Nullable error) {
-            if (error != nil) {
-                LogNSError("RVCCleanMode StartUpMode write Error", error);
-                RemoteDataModelLogger::LogAttributeErrorAsJSON(@(endpointId), @(clusterId), @(attributeId), error);
-            }
-            SetCommandExitStatus(error);
-        }];
-        return CHIP_NO_ERROR;
-    }
-
-private:
-    chip::app::DataModel::Nullable<uint8_t> mValue;
-};
-
-class SubscribeAttributeRvcCleanModeStartUpMode : public SubscribeAttribute {
-public:
-    SubscribeAttributeRvcCleanModeStartUpMode()
-        : SubscribeAttribute("start-up-mode")
-    {
-    }
-
-    ~SubscribeAttributeRvcCleanModeStartUpMode()
-    {
-    }
-
-    CHIP_ERROR SendCommand(MTRBaseDevice * device, chip::EndpointId endpointId) override
-    {
-        constexpr chip::ClusterId clusterId = chip::app::Clusters::RvcCleanMode::Id;
-        constexpr chip::CommandId attributeId = chip::app::Clusters::RvcCleanMode::Attributes::StartUpMode::Id;
-
-        ChipLogProgress(chipTool, "Sending cluster (0x%08" PRIX32 ") ReportAttribute (0x%08" PRIX32 ") on endpoint %u", clusterId, attributeId, endpointId);
-        dispatch_queue_t callbackQueue = dispatch_queue_create("com.chip.command", DISPATCH_QUEUE_SERIAL);
-        __auto_type * cluster = [[MTRBaseClusterRVCCleanMode alloc] initWithDevice:device endpointID:@(endpointId) queue:callbackQueue];
-        __auto_type * params = [[MTRSubscribeParams alloc] initWithMinInterval:@(mMinInterval) maxInterval:@(mMaxInterval)];
-        if (mKeepSubscriptions.HasValue()) {
-            params.replaceExistingSubscriptions = !mKeepSubscriptions.Value();
-        }
-        if (mFabricFiltered.HasValue()) {
-            params.filterByFabric = mFabricFiltered.Value();
-        }
-        if (mAutoResubscribe.HasValue()) {
-            params.resubscribeAutomatically = mAutoResubscribe.Value();
-        }
-        [cluster subscribeAttributeStartUpModeWithParams:params
-            subscriptionEstablished:^() { mSubscriptionEstablished = YES; }
-            reportHandler:^(NSNumber * _Nullable value, NSError * _Nullable error) {
-                NSLog(@"RVCCleanMode.StartUpMode response %@", [value description]);
                 if (error == nil) {
                     RemoteDataModelLogger::LogAttributeAsJSON(@(endpointId), @(clusterId), @(attributeId), value);
                 } else {
@@ -154353,6 +154514,12 @@ void registerClusterNetworkCommissioning(Commands & commands)
         make_unique<SubscribeAttributeNetworkCommissioningLastNetworkID>(), //
         make_unique<ReadNetworkCommissioningLastConnectErrorValue>(), //
         make_unique<SubscribeAttributeNetworkCommissioningLastConnectErrorValue>(), //
+        make_unique<ReadNetworkCommissioningSupportedWiFiBands>(), //
+        make_unique<SubscribeAttributeNetworkCommissioningSupportedWiFiBands>(), //
+        make_unique<ReadNetworkCommissioningSupportedThreadFeatures>(), //
+        make_unique<SubscribeAttributeNetworkCommissioningSupportedThreadFeatures>(), //
+        make_unique<ReadNetworkCommissioningThreadVersion>(), //
+        make_unique<SubscribeAttributeNetworkCommissioningThreadVersion>(), //
         make_unique<ReadNetworkCommissioningGeneratedCommandList>(), //
         make_unique<SubscribeAttributeNetworkCommissioningGeneratedCommandList>(), //
         make_unique<ReadNetworkCommissioningAcceptedCommandList>(), //
@@ -155217,12 +155384,12 @@ void registerClusterIcdManagement(Commands & commands)
         make_unique<WriteAttribute>(Id), //
         make_unique<SubscribeAttribute>(Id), //
 #if MTR_ENABLE_PROVISIONAL
-        make_unique<ReadIcdManagementIdleModeInterval>(), //
-        make_unique<SubscribeAttributeIcdManagementIdleModeInterval>(), //
+        make_unique<ReadIcdManagementIdleModeDuration>(), //
+        make_unique<SubscribeAttributeIcdManagementIdleModeDuration>(), //
 #endif // MTR_ENABLE_PROVISIONAL
 #if MTR_ENABLE_PROVISIONAL
-        make_unique<ReadIcdManagementActiveModeInterval>(), //
-        make_unique<SubscribeAttributeIcdManagementActiveModeInterval>(), //
+        make_unique<ReadIcdManagementActiveModeDuration>(), //
+        make_unique<SubscribeAttributeIcdManagementActiveModeDuration>(), //
 #endif // MTR_ENABLE_PROVISIONAL
 #if MTR_ENABLE_PROVISIONAL
         make_unique<ReadIcdManagementActiveModeThreshold>(), //
@@ -155239,6 +155406,14 @@ void registerClusterIcdManagement(Commands & commands)
 #if MTR_ENABLE_PROVISIONAL
         make_unique<ReadIcdManagementClientsSupportedPerFabric>(), //
         make_unique<SubscribeAttributeIcdManagementClientsSupportedPerFabric>(), //
+#endif // MTR_ENABLE_PROVISIONAL
+#if MTR_ENABLE_PROVISIONAL
+        make_unique<ReadIcdManagementUserActiveModeTriggerHint>(), //
+        make_unique<SubscribeAttributeIcdManagementUserActiveModeTriggerHint>(), //
+#endif // MTR_ENABLE_PROVISIONAL
+#if MTR_ENABLE_PROVISIONAL
+        make_unique<ReadIcdManagementUserActiveModeTriggerInstruction>(), //
+        make_unique<SubscribeAttributeIcdManagementUserActiveModeTriggerInstruction>(), //
 #endif // MTR_ENABLE_PROVISIONAL
 #if MTR_ENABLE_PROVISIONAL
         make_unique<ReadIcdManagementGeneratedCommandList>(), //
@@ -155520,11 +155695,6 @@ void registerClusterRvcRunMode(Commands & commands)
         make_unique<SubscribeAttributeRvcRunModeCurrentMode>(), //
 #endif // MTR_ENABLE_PROVISIONAL
 #if MTR_ENABLE_PROVISIONAL
-        make_unique<ReadRvcRunModeStartUpMode>(), //
-        make_unique<WriteRvcRunModeStartUpMode>(), //
-        make_unique<SubscribeAttributeRvcRunModeStartUpMode>(), //
-#endif // MTR_ENABLE_PROVISIONAL
-#if MTR_ENABLE_PROVISIONAL
         make_unique<ReadRvcRunModeOnMode>(), //
         make_unique<WriteRvcRunModeOnMode>(), //
         make_unique<SubscribeAttributeRvcRunModeOnMode>(), //
@@ -155580,11 +155750,6 @@ void registerClusterRvcCleanMode(Commands & commands)
 #if MTR_ENABLE_PROVISIONAL
         make_unique<ReadRvcCleanModeCurrentMode>(), //
         make_unique<SubscribeAttributeRvcCleanModeCurrentMode>(), //
-#endif // MTR_ENABLE_PROVISIONAL
-#if MTR_ENABLE_PROVISIONAL
-        make_unique<ReadRvcCleanModeStartUpMode>(), //
-        make_unique<WriteRvcCleanModeStartUpMode>(), //
-        make_unique<SubscribeAttributeRvcCleanModeStartUpMode>(), //
 #endif // MTR_ENABLE_PROVISIONAL
 #if MTR_ENABLE_PROVISIONAL
         make_unique<ReadRvcCleanModeOnMode>(), //

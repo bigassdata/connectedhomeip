@@ -144,27 +144,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Identify::Attributes::IdentifyTime::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = Identify::Attributes::IdentifyTime::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -2910,27 +2904,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OnOff::Attributes::OnTime::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = OnOff::Attributes::OnTime::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -2980,27 +2968,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OnOff::Attributes::OffWaitTime::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = OnOff::Attributes::OffWaitTime::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -3050,32 +3032,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OnOff::Attributes::StartUpOnOff::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedCharValue);
-            }
+        ListFreer listFreer;
+        using TypeInfo = OnOff::Attributes::StartUpOnOff::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                  nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedCharValue);
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -3825,27 +3801,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OnOffSwitchConfiguration::Attributes::SwitchActions::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = OnOffSwitchConfiguration::Attributes::SwitchActions::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -4860,27 +4830,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LevelControl::Attributes::Options::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = LevelControl::Attributes::Options::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -4930,27 +4894,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LevelControl::Attributes::OnOffTransitionTime::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = LevelControl::Attributes::OnOffTransitionTime::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -5000,32 +4958,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LevelControl::Attributes::OnLevel::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = LevelControl::Attributes::OnLevel::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -5075,32 +5027,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LevelControl::Attributes::OnTransitionTime::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedShortValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = LevelControl::Attributes::OnTransitionTime::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedShortValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -5150,32 +5096,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LevelControl::Attributes::OffTransitionTime::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedShortValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = LevelControl::Attributes::OffTransitionTime::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedShortValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -5225,32 +5165,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LevelControl::Attributes::DefaultMoveRate::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = LevelControl::Attributes::DefaultMoveRate::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -5300,32 +5234,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LevelControl::Attributes::StartUpCurrentLevel::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = LevelControl::Attributes::StartUpCurrentLevel::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -6385,27 +6313,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BinaryInputBasic::Attributes::ActiveText::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = BinaryInputBasic::Attributes::ActiveText::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -6455,27 +6377,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BinaryInputBasic::Attributes::Description::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = BinaryInputBasic::Attributes::Description::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -6525,27 +6441,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BinaryInputBasic::Attributes::InactiveText::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = BinaryInputBasic::Attributes::InactiveText::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -6595,27 +6505,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BinaryInputBasic::Attributes::OutOfService::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = BinaryInputBasic::Attributes::OutOfService::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -6701,27 +6605,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BinaryInputBasic::Attributes::PresentValue::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = BinaryInputBasic::Attributes::PresentValue::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -6771,27 +6669,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BinaryInputBasic::Attributes::Reliability::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = BinaryInputBasic::Attributes::Reliability::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -8664,64 +8556,58 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Binding::Attributes::Binding::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[MTRBindingClusterTargetStruct class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (MTRBindingClusterTargetStruct *) value[i_0];
-                        if (element_0.node != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].node.Emplace();
-                            definedValue_2 = element_0.node.unsignedLongLongValue;
-                        }
-                        if (element_0.group != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].group.Emplace();
-                            definedValue_2 = element_0.group.unsignedShortValue;
-                        }
-                        if (element_0.endpoint != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].endpoint.Emplace();
-                            definedValue_2 = element_0.endpoint.unsignedShortValue;
-                        }
-                        if (element_0.cluster != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].cluster.Emplace();
-                            definedValue_2 = element_0.cluster.unsignedIntValue;
-                        }
-                        listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
+        ListFreer listFreer;
+        using TypeInfo = Binding::Attributes::Binding::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [MTRBindingClusterTargetStruct class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
                 }
+                auto element_0 = (MTRBindingClusterTargetStruct *)value[i_0];
+                       if (element_0.node != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].node.Emplace();
+                 definedValue_2 = element_0.node.unsignedLongLongValue;
+  }
+       if (element_0.group != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].group.Emplace();
+                 definedValue_2 = element_0.group.unsignedShortValue;
+  }
+       if (element_0.endpoint != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].endpoint.Emplace();
+                 definedValue_2 = element_0.endpoint.unsignedShortValue;
+  }
+       if (element_0.cluster != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].cluster.Emplace();
+                 definedValue_2 = element_0.cluster.unsignedIntValue;
+  }
+             listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
+      }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -9232,121 +9118,115 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = AccessControl::Attributes::Acl::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[MTRAccessControlClusterAccessControlEntryStruct class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (MTRAccessControlClusterAccessControlEntryStruct *) value[i_0];
-                        listHolder_0->mList[i_0].privilege = static_cast<std::remove_reference_t<decltype(listHolder_0->mList[i_0].privilege)>>(element_0.privilege.unsignedCharValue);
-                        listHolder_0->mList[i_0].authMode = static_cast<std::remove_reference_t<decltype(listHolder_0->mList[i_0].authMode)>>(element_0.authMode.unsignedCharValue);
-                        if (element_0.subjects == nil) {
-                            listHolder_0->mList[i_0].subjects.SetNull();
-                        } else {
-                            auto & nonNullValue_2 = listHolder_0->mList[i_0].subjects.SetNonNull();
-                            {
-                                using ListType_3 = std::remove_reference_t<decltype(nonNullValue_2)>;
-                                using ListMemberType_3 = ListMemberTypeGetter<ListType_3>::Type;
-                                if (element_0.subjects.count != 0) {
-                                    auto * listHolder_3 = new ListHolder<ListMemberType_3>(element_0.subjects.count);
-                                    if (listHolder_3 == nullptr || listHolder_3->mList == nullptr) {
-                                        return CHIP_ERROR_INVALID_ARGUMENT;
-                                    }
-                                    listFreer.add(listHolder_3);
-                                    for (size_t i_3 = 0; i_3 < element_0.subjects.count; ++i_3) {
-                                        if (![element_0.subjects[i_3] isKindOfClass:[NSNumber class]]) {
-                                            // Wrong kind of value.
-                                            return CHIP_ERROR_INVALID_ARGUMENT;
-                                        }
-                                        auto element_3 = (NSNumber *) element_0.subjects[i_3];
-                                        listHolder_3->mList[i_3] = element_3.unsignedLongLongValue;
-                                    }
-                                    nonNullValue_2 = ListType_3(listHolder_3->mList, element_0.subjects.count);
-                                } else {
-                                    nonNullValue_2 = ListType_3();
-                                }
-                            }
-                        }
-                        if (element_0.targets == nil) {
-                            listHolder_0->mList[i_0].targets.SetNull();
-                        } else {
-                            auto & nonNullValue_2 = listHolder_0->mList[i_0].targets.SetNonNull();
-                            {
-                                using ListType_3 = std::remove_reference_t<decltype(nonNullValue_2)>;
-                                using ListMemberType_3 = ListMemberTypeGetter<ListType_3>::Type;
-                                if (element_0.targets.count != 0) {
-                                    auto * listHolder_3 = new ListHolder<ListMemberType_3>(element_0.targets.count);
-                                    if (listHolder_3 == nullptr || listHolder_3->mList == nullptr) {
-                                        return CHIP_ERROR_INVALID_ARGUMENT;
-                                    }
-                                    listFreer.add(listHolder_3);
-                                    for (size_t i_3 = 0; i_3 < element_0.targets.count; ++i_3) {
-                                        if (![element_0.targets[i_3] isKindOfClass:[MTRAccessControlClusterAccessControlTargetStruct class]]) {
-                                            // Wrong kind of value.
-                                            return CHIP_ERROR_INVALID_ARGUMENT;
-                                        }
-                                        auto element_3 = (MTRAccessControlClusterAccessControlTargetStruct *) element_0.targets[i_3];
-                                        if (element_3.cluster == nil) {
-                                            listHolder_3->mList[i_3].cluster.SetNull();
-                                        } else {
-                                            auto & nonNullValue_5 = listHolder_3->mList[i_3].cluster.SetNonNull();
-                                            nonNullValue_5 = element_3.cluster.unsignedIntValue;
-                                        }
-                                        if (element_3.endpoint == nil) {
-                                            listHolder_3->mList[i_3].endpoint.SetNull();
-                                        } else {
-                                            auto & nonNullValue_5 = listHolder_3->mList[i_3].endpoint.SetNonNull();
-                                            nonNullValue_5 = element_3.endpoint.unsignedShortValue;
-                                        }
-                                        if (element_3.deviceType == nil) {
-                                            listHolder_3->mList[i_3].deviceType.SetNull();
-                                        } else {
-                                            auto & nonNullValue_5 = listHolder_3->mList[i_3].deviceType.SetNonNull();
-                                            nonNullValue_5 = element_3.deviceType.unsignedIntValue;
-                                        }
-                                    }
-                                    nonNullValue_2 = ListType_3(listHolder_3->mList, element_0.targets.count);
-                                } else {
-                                    nonNullValue_2 = ListType_3();
-                                }
-                            }
-                        }
-                        listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
+        ListFreer listFreer;
+        using TypeInfo = AccessControl::Attributes::Acl::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [MTRAccessControlClusterAccessControlEntryStruct class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
                 }
+                auto element_0 = (MTRAccessControlClusterAccessControlEntryStruct *)value[i_0];
+                           listHolder_0->mList[i_0].privilege = static_cast<std::remove_reference_t<decltype(listHolder_0->mList[i_0].privilege)>>(element_0.privilege.unsignedCharValue);
+           listHolder_0->mList[i_0].authMode = static_cast<std::remove_reference_t<decltype(listHolder_0->mList[i_0].authMode)>>(element_0.authMode.unsignedCharValue);
+       if (element_0.subjects == nil) {
+         listHolder_0->mList[i_0].subjects.SetNull();
+       } else {
+         auto & nonNullValue_2 = listHolder_0->mList[i_0].subjects.SetNonNull();
+           {
+             using ListType_3 = std::remove_reference_t<decltype(nonNullValue_2)>;
+             using ListMemberType_3 = ListMemberTypeGetter<ListType_3>::Type;
+             if (element_0.subjects.count != 0) {
+               auto * listHolder_3 = new ListHolder<ListMemberType_3>(element_0.subjects.count);
+               if (listHolder_3 == nullptr || listHolder_3->mList == nullptr) {
+                 return CHIP_ERROR_INVALID_ARGUMENT;
+               }
+               listFreer.add(listHolder_3);
+               for (size_t i_3 = 0; i_3 < element_0.subjects.count; ++i_3) {
+                 if ( ! [element_0.subjects[i_3] isKindOfClass: [NSNumber class]] ) {
+                   // Wrong kind of value.
+                   return CHIP_ERROR_INVALID_ARGUMENT;
+                 }
+                 auto element_3 = (NSNumber *)element_0.subjects[i_3];
+                         listHolder_3->mList[i_3] = element_3.unsignedLongLongValue;
+      }
+               nonNullValue_2 = ListType_3(listHolder_3->mList, element_0.subjects.count);
+             } else {
+               nonNullValue_2 = ListType_3();
+             }
+           }
+       }
+       if (element_0.targets == nil) {
+         listHolder_0->mList[i_0].targets.SetNull();
+       } else {
+         auto & nonNullValue_2 = listHolder_0->mList[i_0].targets.SetNonNull();
+           {
+             using ListType_3 = std::remove_reference_t<decltype(nonNullValue_2)>;
+             using ListMemberType_3 = ListMemberTypeGetter<ListType_3>::Type;
+             if (element_0.targets.count != 0) {
+               auto * listHolder_3 = new ListHolder<ListMemberType_3>(element_0.targets.count);
+               if (listHolder_3 == nullptr || listHolder_3->mList == nullptr) {
+                 return CHIP_ERROR_INVALID_ARGUMENT;
+               }
+               listFreer.add(listHolder_3);
+               for (size_t i_3 = 0; i_3 < element_0.targets.count; ++i_3) {
+                 if ( ! [element_0.targets[i_3] isKindOfClass: [MTRAccessControlClusterAccessControlTargetStruct class]] ) {
+                   // Wrong kind of value.
+                   return CHIP_ERROR_INVALID_ARGUMENT;
+                 }
+                 auto element_3 = (MTRAccessControlClusterAccessControlTargetStruct *)element_0.targets[i_3];
+                        if (element_3.cluster == nil) {
+         listHolder_3->mList[i_3].cluster.SetNull();
+       } else {
+         auto & nonNullValue_5 = listHolder_3->mList[i_3].cluster.SetNonNull();
+                 nonNullValue_5 = element_3.cluster.unsignedIntValue;
+  }
+       if (element_3.endpoint == nil) {
+         listHolder_3->mList[i_3].endpoint.SetNull();
+       } else {
+         auto & nonNullValue_5 = listHolder_3->mList[i_3].endpoint.SetNonNull();
+                 nonNullValue_5 = element_3.endpoint.unsignedShortValue;
+  }
+       if (element_3.deviceType == nil) {
+         listHolder_3->mList[i_3].deviceType.SetNull();
+       } else {
+         auto & nonNullValue_5 = listHolder_3->mList[i_3].deviceType.SetNonNull();
+                 nonNullValue_5 = element_3.deviceType.unsignedIntValue;
+  }
+      }
+               nonNullValue_2 = ListType_3(listHolder_3->mList, element_0.targets.count);
+             } else {
+               nonNullValue_2 = ListType_3();
+             }
+           }
+       }
+             listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
+      }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -9396,49 +9276,43 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = AccessControl::Attributes::Extension::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[MTRAccessControlClusterAccessControlExtensionStruct class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (MTRAccessControlClusterAccessControlExtensionStruct *) value[i_0];
-                        listHolder_0->mList[i_0].data = AsByteSpan(element_0.data);
-                        listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
+        ListFreer listFreer;
+        using TypeInfo = AccessControl::Attributes::Extension::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [MTRAccessControlClusterAccessControlExtensionStruct class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
                 }
+                auto element_0 = (MTRAccessControlClusterAccessControlExtensionStruct *)value[i_0];
+                       listHolder_0->mList[i_0].data = AsByteSpan(element_0.data);
+             listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
+      }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -11395,27 +11269,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BasicInformation::Attributes::NodeLabel::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = BasicInformation::Attributes::NodeLabel::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -11465,27 +11333,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BasicInformation::Attributes::Location::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = BasicInformation::Attributes::Location::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -11859,27 +11721,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BasicInformation::Attributes::LocalConfigDisabled::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = BasicInformation::Attributes::LocalConfigDisabled::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -13769,50 +13625,44 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OtaSoftwareUpdateRequestor::Attributes::DefaultOTAProviders::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[MTROTASoftwareUpdateRequestorClusterProviderLocation class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (MTROTASoftwareUpdateRequestorClusterProviderLocation *) value[i_0];
-                        listHolder_0->mList[i_0].providerNodeID = element_0.providerNodeID.unsignedLongLongValue;
-                        listHolder_0->mList[i_0].endpoint = element_0.endpoint.unsignedShortValue;
-                        listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
+        ListFreer listFreer;
+        using TypeInfo = OtaSoftwareUpdateRequestor::Attributes::DefaultOTAProviders::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [MTROTASoftwareUpdateRequestorClusterProviderLocation class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
                 }
+                auto element_0 = (MTROTASoftwareUpdateRequestorClusterProviderLocation *)value[i_0];
+                             listHolder_0->mList[i_0].providerNodeID = element_0.providerNodeID.unsignedLongLongValue;
+             listHolder_0->mList[i_0].endpoint = element_0.endpoint.unsignedShortValue;
+             listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
+      }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -14545,27 +14395,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LocalizationConfiguration::Attributes::ActiveLocale::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = LocalizationConfiguration::Attributes::ActiveLocale::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -15147,27 +14991,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = TimeFormatLocalization::Attributes::HourFormat::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = TimeFormatLocalization::Attributes::HourFormat::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -15217,27 +15055,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = TimeFormatLocalization::Attributes::ActiveCalendarType::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = TimeFormatLocalization::Attributes::ActiveCalendarType::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -15862,27 +15694,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitLocalization::Attributes::TemperatureUnit::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = UnitLocalization::Attributes::TemperatureUnit::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -19614,27 +19440,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = GeneralCommissioning::Attributes::Breadcrumb::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedLongLongValue;
+        ListFreer listFreer;
+        using TypeInfo = GeneralCommissioning::Attributes::Breadcrumb::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedLongLongValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -20747,27 +20567,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = NetworkCommissioning::Attributes::InterfaceEnabled::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = NetworkCommissioning::Attributes::InterfaceEnabled::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -20896,6 +20710,114 @@ public:
 + (void)readAttributeLastConnectErrorValueWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
 {
     using TypeInfo = NetworkCommissioning::Attributes::LastConnectErrorValue::TypeInfo;
+    [clusterStateCacheContainer
+        _readKnownCachedAttributeWithEndpointID:static_cast<chip::EndpointId>([endpoint unsignedShortValue])
+                                      clusterID:TypeInfo::GetClusterId()
+                                    attributeID:TypeInfo::GetAttributeId()
+                                          queue:queue
+                                     completion:completion];
+}
+
+- (void)readAttributeSupportedWiFiBandsWithCompletion:(void (^)(NSArray * _Nullable value, NSError * _Nullable error))completion
+{
+    using TypeInfo = NetworkCommissioning::Attributes::SupportedWiFiBands::TypeInfo;
+    [self.device _readKnownAttributeWithEndpointID:@(self.endpoint)
+                                         clusterID:@(TypeInfo::GetClusterId())
+                                       attributeID:@(TypeInfo::GetAttributeId())
+                                            params:nil
+                                             queue:self.callbackQueue
+                                        completion:completion];
+}
+
+- (void)subscribeAttributeSupportedWiFiBandsWithParams:(MTRSubscribeParams * _Nonnull)params
+                               subscriptionEstablished:(MTRSubscriptionEstablishedHandler _Nullable)subscriptionEstablished
+                                         reportHandler:(void (^)(NSArray * _Nullable value, NSError * _Nullable error))reportHandler
+{
+    using TypeInfo = NetworkCommissioning::Attributes::SupportedWiFiBands::TypeInfo;
+    [self.device _subscribeToKnownAttributeWithEndpointID:@(self.endpoint)
+                                                clusterID:@(TypeInfo::GetClusterId())
+                                              attributeID:@(TypeInfo::GetAttributeId())
+                                                   params:params
+                                                    queue:self.callbackQueue
+                                            reportHandler:reportHandler
+                                  subscriptionEstablished:subscriptionEstablished];
+}
+
++ (void)readAttributeSupportedWiFiBandsWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSArray * _Nullable value, NSError * _Nullable error))completion
+{
+    using TypeInfo = NetworkCommissioning::Attributes::SupportedWiFiBands::TypeInfo;
+    [clusterStateCacheContainer
+        _readKnownCachedAttributeWithEndpointID:static_cast<chip::EndpointId>([endpoint unsignedShortValue])
+                                      clusterID:TypeInfo::GetClusterId()
+                                    attributeID:TypeInfo::GetAttributeId()
+                                          queue:queue
+                                     completion:completion];
+}
+
+- (void)readAttributeSupportedThreadFeaturesWithCompletion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
+{
+    using TypeInfo = NetworkCommissioning::Attributes::SupportedThreadFeatures::TypeInfo;
+    [self.device _readKnownAttributeWithEndpointID:@(self.endpoint)
+                                         clusterID:@(TypeInfo::GetClusterId())
+                                       attributeID:@(TypeInfo::GetAttributeId())
+                                            params:nil
+                                             queue:self.callbackQueue
+                                        completion:completion];
+}
+
+- (void)subscribeAttributeSupportedThreadFeaturesWithParams:(MTRSubscribeParams * _Nonnull)params
+                                    subscriptionEstablished:(MTRSubscriptionEstablishedHandler _Nullable)subscriptionEstablished
+                                              reportHandler:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))reportHandler
+{
+    using TypeInfo = NetworkCommissioning::Attributes::SupportedThreadFeatures::TypeInfo;
+    [self.device _subscribeToKnownAttributeWithEndpointID:@(self.endpoint)
+                                                clusterID:@(TypeInfo::GetClusterId())
+                                              attributeID:@(TypeInfo::GetAttributeId())
+                                                   params:params
+                                                    queue:self.callbackQueue
+                                            reportHandler:reportHandler
+                                  subscriptionEstablished:subscriptionEstablished];
+}
+
++ (void)readAttributeSupportedThreadFeaturesWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
+{
+    using TypeInfo = NetworkCommissioning::Attributes::SupportedThreadFeatures::TypeInfo;
+    [clusterStateCacheContainer
+        _readKnownCachedAttributeWithEndpointID:static_cast<chip::EndpointId>([endpoint unsignedShortValue])
+                                      clusterID:TypeInfo::GetClusterId()
+                                    attributeID:TypeInfo::GetAttributeId()
+                                          queue:queue
+                                     completion:completion];
+}
+
+- (void)readAttributeThreadVersionWithCompletion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
+{
+    using TypeInfo = NetworkCommissioning::Attributes::ThreadVersion::TypeInfo;
+    [self.device _readKnownAttributeWithEndpointID:@(self.endpoint)
+                                         clusterID:@(TypeInfo::GetClusterId())
+                                       attributeID:@(TypeInfo::GetAttributeId())
+                                            params:nil
+                                             queue:self.callbackQueue
+                                        completion:completion];
+}
+
+- (void)subscribeAttributeThreadVersionWithParams:(MTRSubscribeParams * _Nonnull)params
+                          subscriptionEstablished:(MTRSubscriptionEstablishedHandler _Nullable)subscriptionEstablished
+                                    reportHandler:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))reportHandler
+{
+    using TypeInfo = NetworkCommissioning::Attributes::ThreadVersion::TypeInfo;
+    [self.device _subscribeToKnownAttributeWithEndpointID:@(self.endpoint)
+                                                clusterID:@(TypeInfo::GetClusterId())
+                                              attributeID:@(TypeInfo::GetAttributeId())
+                                                   params:params
+                                                    queue:self.callbackQueue
+                                            reportHandler:reportHandler
+                                  subscriptionEstablished:subscriptionEstablished];
+}
+
++ (void)readAttributeThreadVersionWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
+{
+    using TypeInfo = NetworkCommissioning::Attributes::ThreadVersion::TypeInfo;
     [clusterStateCacheContainer
         _readKnownCachedAttributeWithEndpointID:static_cast<chip::EndpointId>([endpoint unsignedShortValue])
                                       clusterID:TypeInfo::GetClusterId()
@@ -32332,27 +32254,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BridgedDeviceBasicInformation::Attributes::NodeLabel::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = BridgedDeviceBasicInformation::Attributes::NodeLabel::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -36356,50 +36272,44 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = GroupKeyManagement::Attributes::GroupKeyMap::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[MTRGroupKeyManagementClusterGroupKeyMapStruct class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (MTRGroupKeyManagementClusterGroupKeyMapStruct *) value[i_0];
-                        listHolder_0->mList[i_0].groupId = element_0.groupId.unsignedShortValue;
-                        listHolder_0->mList[i_0].groupKeySetID = element_0.groupKeySetID.unsignedShortValue;
-                        listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
+        ListFreer listFreer;
+        using TypeInfo = GroupKeyManagement::Attributes::GroupKeyMap::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [MTRGroupKeyManagementClusterGroupKeyMapStruct class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
                 }
+                auto element_0 = (MTRGroupKeyManagementClusterGroupKeyMapStruct *)value[i_0];
+                             listHolder_0->mList[i_0].groupId = element_0.groupId.unsignedShortValue;
+             listHolder_0->mList[i_0].groupKeySetID = element_0.groupKeySetID.unsignedShortValue;
+             listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
+      }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -37639,49 +37549,43 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UserLabel::Attributes::LabelList::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[MTRUserLabelClusterLabelStruct class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (MTRUserLabelClusterLabelStruct *) value[i_0];
-                        listHolder_0->mList[i_0].label = AsCharSpan(element_0.label);
-                        listHolder_0->mList[i_0].value = AsCharSpan(element_0.value);
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
+        ListFreer listFreer;
+        using TypeInfo = UserLabel::Attributes::LabelList::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [MTRUserLabelClusterLabelStruct class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
                 }
+                auto element_0 = (MTRUserLabelClusterLabelStruct *)value[i_0];
+                       listHolder_0->mList[i_0].label = AsCharSpan(element_0.label);
+       listHolder_0->mList[i_0].value = AsCharSpan(element_0.value);
+      }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -38737,9 +38641,9 @@ public:
                                         completion:responseHandler];
 }
 
-- (void)readAttributeIdleModeIntervalWithCompletion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
+- (void)readAttributeIdleModeDurationWithCompletion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
 {
-    using TypeInfo = IcdManagement::Attributes::IdleModeInterval::TypeInfo;
+    using TypeInfo = IcdManagement::Attributes::IdleModeDuration::TypeInfo;
     [self.device _readKnownAttributeWithEndpointID:@(self.endpoint)
                                          clusterID:@(TypeInfo::GetClusterId())
                                        attributeID:@(TypeInfo::GetAttributeId())
@@ -38748,11 +38652,11 @@ public:
                                         completion:completion];
 }
 
-- (void)subscribeAttributeIdleModeIntervalWithParams:(MTRSubscribeParams * _Nonnull)params
+- (void)subscribeAttributeIdleModeDurationWithParams:(MTRSubscribeParams * _Nonnull)params
                              subscriptionEstablished:(MTRSubscriptionEstablishedHandler _Nullable)subscriptionEstablished
                                        reportHandler:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))reportHandler
 {
-    using TypeInfo = IcdManagement::Attributes::IdleModeInterval::TypeInfo;
+    using TypeInfo = IcdManagement::Attributes::IdleModeDuration::TypeInfo;
     [self.device _subscribeToKnownAttributeWithEndpointID:@(self.endpoint)
                                                 clusterID:@(TypeInfo::GetClusterId())
                                               attributeID:@(TypeInfo::GetAttributeId())
@@ -38762,9 +38666,9 @@ public:
                                   subscriptionEstablished:subscriptionEstablished];
 }
 
-+ (void)readAttributeIdleModeIntervalWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
++ (void)readAttributeIdleModeDurationWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
 {
-    using TypeInfo = IcdManagement::Attributes::IdleModeInterval::TypeInfo;
+    using TypeInfo = IcdManagement::Attributes::IdleModeDuration::TypeInfo;
     [clusterStateCacheContainer
         _readKnownCachedAttributeWithEndpointID:static_cast<chip::EndpointId>([endpoint unsignedShortValue])
                                       clusterID:TypeInfo::GetClusterId()
@@ -38773,9 +38677,9 @@ public:
                                      completion:completion];
 }
 
-- (void)readAttributeActiveModeIntervalWithCompletion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
+- (void)readAttributeActiveModeDurationWithCompletion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
 {
-    using TypeInfo = IcdManagement::Attributes::ActiveModeInterval::TypeInfo;
+    using TypeInfo = IcdManagement::Attributes::ActiveModeDuration::TypeInfo;
     [self.device _readKnownAttributeWithEndpointID:@(self.endpoint)
                                          clusterID:@(TypeInfo::GetClusterId())
                                        attributeID:@(TypeInfo::GetAttributeId())
@@ -38784,11 +38688,11 @@ public:
                                         completion:completion];
 }
 
-- (void)subscribeAttributeActiveModeIntervalWithParams:(MTRSubscribeParams * _Nonnull)params
+- (void)subscribeAttributeActiveModeDurationWithParams:(MTRSubscribeParams * _Nonnull)params
                                subscriptionEstablished:(MTRSubscriptionEstablishedHandler _Nullable)subscriptionEstablished
                                          reportHandler:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))reportHandler
 {
-    using TypeInfo = IcdManagement::Attributes::ActiveModeInterval::TypeInfo;
+    using TypeInfo = IcdManagement::Attributes::ActiveModeDuration::TypeInfo;
     [self.device _subscribeToKnownAttributeWithEndpointID:@(self.endpoint)
                                                 clusterID:@(TypeInfo::GetClusterId())
                                               attributeID:@(TypeInfo::GetAttributeId())
@@ -38798,9 +38702,9 @@ public:
                                   subscriptionEstablished:subscriptionEstablished];
 }
 
-+ (void)readAttributeActiveModeIntervalWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
++ (void)readAttributeActiveModeDurationWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
 {
-    using TypeInfo = IcdManagement::Attributes::ActiveModeInterval::TypeInfo;
+    using TypeInfo = IcdManagement::Attributes::ActiveModeDuration::TypeInfo;
     [clusterStateCacheContainer
         _readKnownCachedAttributeWithEndpointID:static_cast<chip::EndpointId>([endpoint unsignedShortValue])
                                       clusterID:TypeInfo::GetClusterId()
@@ -38945,6 +38849,78 @@ public:
 + (void)readAttributeClientsSupportedPerFabricWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
 {
     using TypeInfo = IcdManagement::Attributes::ClientsSupportedPerFabric::TypeInfo;
+    [clusterStateCacheContainer
+        _readKnownCachedAttributeWithEndpointID:static_cast<chip::EndpointId>([endpoint unsignedShortValue])
+                                      clusterID:TypeInfo::GetClusterId()
+                                    attributeID:TypeInfo::GetAttributeId()
+                                          queue:queue
+                                     completion:completion];
+}
+
+- (void)readAttributeUserActiveModeTriggerHintWithCompletion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
+{
+    using TypeInfo = IcdManagement::Attributes::UserActiveModeTriggerHint::TypeInfo;
+    [self.device _readKnownAttributeWithEndpointID:@(self.endpoint)
+                                         clusterID:@(TypeInfo::GetClusterId())
+                                       attributeID:@(TypeInfo::GetAttributeId())
+                                            params:nil
+                                             queue:self.callbackQueue
+                                        completion:completion];
+}
+
+- (void)subscribeAttributeUserActiveModeTriggerHintWithParams:(MTRSubscribeParams * _Nonnull)params
+                                      subscriptionEstablished:(MTRSubscriptionEstablishedHandler _Nullable)subscriptionEstablished
+                                                reportHandler:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))reportHandler
+{
+    using TypeInfo = IcdManagement::Attributes::UserActiveModeTriggerHint::TypeInfo;
+    [self.device _subscribeToKnownAttributeWithEndpointID:@(self.endpoint)
+                                                clusterID:@(TypeInfo::GetClusterId())
+                                              attributeID:@(TypeInfo::GetAttributeId())
+                                                   params:params
+                                                    queue:self.callbackQueue
+                                            reportHandler:reportHandler
+                                  subscriptionEstablished:subscriptionEstablished];
+}
+
++ (void)readAttributeUserActiveModeTriggerHintWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
+{
+    using TypeInfo = IcdManagement::Attributes::UserActiveModeTriggerHint::TypeInfo;
+    [clusterStateCacheContainer
+        _readKnownCachedAttributeWithEndpointID:static_cast<chip::EndpointId>([endpoint unsignedShortValue])
+                                      clusterID:TypeInfo::GetClusterId()
+                                    attributeID:TypeInfo::GetAttributeId()
+                                          queue:queue
+                                     completion:completion];
+}
+
+- (void)readAttributeUserActiveModeTriggerInstructionWithCompletion:(void (^)(NSString * _Nullable value, NSError * _Nullable error))completion
+{
+    using TypeInfo = IcdManagement::Attributes::UserActiveModeTriggerInstruction::TypeInfo;
+    [self.device _readKnownAttributeWithEndpointID:@(self.endpoint)
+                                         clusterID:@(TypeInfo::GetClusterId())
+                                       attributeID:@(TypeInfo::GetAttributeId())
+                                            params:nil
+                                             queue:self.callbackQueue
+                                        completion:completion];
+}
+
+- (void)subscribeAttributeUserActiveModeTriggerInstructionWithParams:(MTRSubscribeParams * _Nonnull)params
+                                             subscriptionEstablished:(MTRSubscriptionEstablishedHandler _Nullable)subscriptionEstablished
+                                                       reportHandler:(void (^)(NSString * _Nullable value, NSError * _Nullable error))reportHandler
+{
+    using TypeInfo = IcdManagement::Attributes::UserActiveModeTriggerInstruction::TypeInfo;
+    [self.device _subscribeToKnownAttributeWithEndpointID:@(self.endpoint)
+                                                clusterID:@(TypeInfo::GetClusterId())
+                                              attributeID:@(TypeInfo::GetAttributeId())
+                                                   params:params
+                                                    queue:self.callbackQueue
+                                            reportHandler:reportHandler
+                                  subscriptionEstablished:subscriptionEstablished];
+}
+
++ (void)readAttributeUserActiveModeTriggerInstructionWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSString * _Nullable value, NSError * _Nullable error))completion
+{
+    using TypeInfo = IcdManagement::Attributes::UserActiveModeTriggerInstruction::TypeInfo;
     [clusterStateCacheContainer
         _readKnownCachedAttributeWithEndpointID:static_cast<chip::EndpointId>([endpoint unsignedShortValue])
                                       clusterID:TypeInfo::GetClusterId()
@@ -39375,32 +39351,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ModeSelect::Attributes::StartUpMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = ModeSelect::Attributes::StartUpMode::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -39450,32 +39420,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ModeSelect::Attributes::OnMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = ModeSelect::Attributes::OnMode::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -40272,32 +40236,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LaundryWasherMode::Attributes::StartUpMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = LaundryWasherMode::Attributes::StartUpMode::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -40347,32 +40305,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LaundryWasherMode::Attributes::OnMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = LaundryWasherMode::Attributes::OnMode::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -40751,32 +40703,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = RefrigeratorAndTemperatureControlledCabinetMode::Attributes::StartUpMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = RefrigeratorAndTemperatureControlledCabinetMode::Attributes::StartUpMode::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -40826,32 +40772,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = RefrigeratorAndTemperatureControlledCabinetMode::Attributes::OnMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = RefrigeratorAndTemperatureControlledCabinetMode::Attributes::OnMode::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -41169,32 +41109,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LaundryWasherControls::Attributes::SpinSpeedCurrent::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = LaundryWasherControls::Attributes::SpinSpeedCurrent::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -41244,27 +41178,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = LaundryWasherControls::Attributes::NumberOfRinses::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = LaundryWasherControls::Attributes::NumberOfRinses::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -41658,81 +41586,6 @@ public:
                                      completion:completion];
 }
 
-- (void)readAttributeStartUpModeWithCompletion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
-{
-    using TypeInfo = RvcRunMode::Attributes::StartUpMode::TypeInfo;
-    [self.device _readKnownAttributeWithEndpointID:@(self.endpoint)
-                                         clusterID:@(TypeInfo::GetClusterId())
-                                       attributeID:@(TypeInfo::GetAttributeId())
-                                            params:nil
-                                             queue:self.callbackQueue
-                                        completion:completion];
-}
-
-- (void)writeAttributeStartUpModeWithValue:(NSNumber * _Nullable)value completion:(MTRStatusCompletion)completion
-{
-    [self writeAttributeStartUpModeWithValue:(NSNumber * _Nullable) value params:nil completion:completion];
-}
-- (void)writeAttributeStartUpModeWithValue:(NSNumber * _Nullable)value params:(MTRWriteParams * _Nullable)params completion:(MTRStatusCompletion)completion
-{
-    // Make a copy of params before we go async.
-    params = [params copy];
-    value = [value copy];
-
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
-
-            ListFreer listFreer;
-            using TypeInfo = RvcRunMode::Attributes::StartUpMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
-
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
-    std::move(*bridge).DispatchAction(self.device);
-}
-
-- (void)subscribeAttributeStartUpModeWithParams:(MTRSubscribeParams * _Nonnull)params
-                        subscriptionEstablished:(MTRSubscriptionEstablishedHandler _Nullable)subscriptionEstablished
-                                  reportHandler:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))reportHandler
-{
-    using TypeInfo = RvcRunMode::Attributes::StartUpMode::TypeInfo;
-    [self.device _subscribeToKnownAttributeWithEndpointID:@(self.endpoint)
-                                                clusterID:@(TypeInfo::GetClusterId())
-                                              attributeID:@(TypeInfo::GetAttributeId())
-                                                   params:params
-                                                    queue:self.callbackQueue
-                                            reportHandler:reportHandler
-                                  subscriptionEstablished:subscriptionEstablished];
-}
-
-+ (void)readAttributeStartUpModeWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
-{
-    using TypeInfo = RvcRunMode::Attributes::StartUpMode::TypeInfo;
-    [clusterStateCacheContainer
-        _readKnownCachedAttributeWithEndpointID:static_cast<chip::EndpointId>([endpoint unsignedShortValue])
-                                      clusterID:TypeInfo::GetClusterId()
-                                    attributeID:TypeInfo::GetAttributeId()
-                                          queue:queue
-                                     completion:completion];
-}
-
 - (void)readAttributeOnModeWithCompletion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
 {
     using TypeInfo = RvcRunMode::Attributes::OnMode::TypeInfo;
@@ -41754,32 +41607,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = RvcRunMode::Attributes::OnMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = RvcRunMode::Attributes::OnMode::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -42137,81 +41984,6 @@ public:
                                      completion:completion];
 }
 
-- (void)readAttributeStartUpModeWithCompletion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
-{
-    using TypeInfo = RvcCleanMode::Attributes::StartUpMode::TypeInfo;
-    [self.device _readKnownAttributeWithEndpointID:@(self.endpoint)
-                                         clusterID:@(TypeInfo::GetClusterId())
-                                       attributeID:@(TypeInfo::GetAttributeId())
-                                            params:nil
-                                             queue:self.callbackQueue
-                                        completion:completion];
-}
-
-- (void)writeAttributeStartUpModeWithValue:(NSNumber * _Nullable)value completion:(MTRStatusCompletion)completion
-{
-    [self writeAttributeStartUpModeWithValue:(NSNumber * _Nullable) value params:nil completion:completion];
-}
-- (void)writeAttributeStartUpModeWithValue:(NSNumber * _Nullable)value params:(MTRWriteParams * _Nullable)params completion:(MTRStatusCompletion)completion
-{
-    // Make a copy of params before we go async.
-    params = [params copy];
-    value = [value copy];
-
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
-
-            ListFreer listFreer;
-            using TypeInfo = RvcCleanMode::Attributes::StartUpMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
-
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
-    std::move(*bridge).DispatchAction(self.device);
-}
-
-- (void)subscribeAttributeStartUpModeWithParams:(MTRSubscribeParams * _Nonnull)params
-                        subscriptionEstablished:(MTRSubscriptionEstablishedHandler _Nullable)subscriptionEstablished
-                                  reportHandler:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))reportHandler
-{
-    using TypeInfo = RvcCleanMode::Attributes::StartUpMode::TypeInfo;
-    [self.device _subscribeToKnownAttributeWithEndpointID:@(self.endpoint)
-                                                clusterID:@(TypeInfo::GetClusterId())
-                                              attributeID:@(TypeInfo::GetAttributeId())
-                                                   params:params
-                                                    queue:self.callbackQueue
-                                            reportHandler:reportHandler
-                                  subscriptionEstablished:subscriptionEstablished];
-}
-
-+ (void)readAttributeStartUpModeWithClusterStateCache:(MTRClusterStateCacheContainer *)clusterStateCacheContainer endpoint:(NSNumber *)endpoint queue:(dispatch_queue_t)queue completion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
-{
-    using TypeInfo = RvcCleanMode::Attributes::StartUpMode::TypeInfo;
-    [clusterStateCacheContainer
-        _readKnownCachedAttributeWithEndpointID:static_cast<chip::EndpointId>([endpoint unsignedShortValue])
-                                      clusterID:TypeInfo::GetClusterId()
-                                    attributeID:TypeInfo::GetAttributeId()
-                                          queue:queue
-                                     completion:completion];
-}
-
 - (void)readAttributeOnModeWithCompletion:(void (^)(NSNumber * _Nullable value, NSError * _Nullable error))completion
 {
     using TypeInfo = RvcCleanMode::Attributes::OnMode::TypeInfo;
@@ -42233,32 +42005,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = RvcCleanMode::Attributes::OnMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = RvcCleanMode::Attributes::OnMode::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -43450,32 +43216,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DishwasherMode::Attributes::StartUpMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = DishwasherMode::Attributes::StartUpMode::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -43525,32 +43285,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DishwasherMode::Attributes::OnMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = DishwasherMode::Attributes::OnMode::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -44525,27 +44279,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = SmokeCoAlarm::Attributes::SmokeSensitivityLevel::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = SmokeCoAlarm::Attributes::SmokeSensitivityLevel::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -46583,32 +46331,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = HepaFilterMonitoring::Attributes::LastChangedTime::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedIntValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = HepaFilterMonitoring::Attributes::LastChangedTime::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedIntValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -47099,32 +46841,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ActivatedCarbonFilterMonitoring::Attributes::LastChangedTime::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedIntValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = ActivatedCarbonFilterMonitoring::Attributes::LastChangedTime::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedIntValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -48067,27 +47803,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::DoorOpenEvents::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedIntValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::DoorOpenEvents::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedIntValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -48137,27 +47867,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::DoorClosedEvents::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedIntValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::DoorClosedEvents::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedIntValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -48207,27 +47931,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::OpenPeriod::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::OpenPeriod::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -48709,27 +48427,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::Language::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::Language::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -48779,27 +48491,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::LEDSettings::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::LEDSettings::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -48849,27 +48555,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::AutoRelockTime::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedIntValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::AutoRelockTime::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedIntValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -48919,27 +48619,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::SoundVolume::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::SoundVolume::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -48989,27 +48683,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::OperatingMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::OperatingMode::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -49131,27 +48819,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::EnableLocalProgramming::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::EnableLocalProgramming::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -49201,27 +48883,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::EnableOneTouchLocking::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::EnableOneTouchLocking::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -49271,27 +48947,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::EnableInsideStatusLED::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::EnableInsideStatusLED::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -49341,27 +49011,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::EnablePrivacyModeButton::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::EnablePrivacyModeButton::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -49411,27 +49075,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::LocalProgrammingFeatures::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::LocalProgrammingFeatures::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -49481,27 +49139,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::WrongCodeEntryLimit::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::WrongCodeEntryLimit::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -49551,27 +49203,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::UserCodeTemporaryDisableTime::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::UserCodeTemporaryDisableTime::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -49621,27 +49267,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::SendPINOverTheAir::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::SendPINOverTheAir::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -49691,27 +49331,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::RequirePINforRemoteOperation::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::RequirePINforRemoteOperation::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -49761,27 +49395,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = DoorLock::Attributes::ExpiringUserTimeout::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = DoorLock::Attributes::ExpiringUserTimeout::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -52663,27 +52291,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = WindowCovering::Attributes::Mode::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = WindowCovering::Attributes::Mode::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -54174,27 +53796,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BarrierControl::Attributes::BarrierOpenEvents::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = BarrierControl::Attributes::BarrierOpenEvents::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -54244,27 +53860,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BarrierControl::Attributes::BarrierCloseEvents::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = BarrierControl::Attributes::BarrierCloseEvents::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -54314,27 +53924,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BarrierControl::Attributes::BarrierCommandOpenEvents::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = BarrierControl::Attributes::BarrierCommandOpenEvents::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -54384,27 +53988,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BarrierControl::Attributes::BarrierCommandCloseEvents::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = BarrierControl::Attributes::BarrierCommandCloseEvents::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -54454,27 +54052,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BarrierControl::Attributes::BarrierOpenPeriod::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = BarrierControl::Attributes::BarrierOpenPeriod::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -54524,27 +54116,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BarrierControl::Attributes::BarrierClosePeriod::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = BarrierControl::Attributes::BarrierClosePeriod::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -56109,32 +55695,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = PumpConfigurationAndControl::Attributes::LifetimeRunningHours::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedIntValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = PumpConfigurationAndControl::Attributes::LifetimeRunningHours::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedIntValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -56220,32 +55800,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = PumpConfigurationAndControl::Attributes::LifetimeEnergyConsumed::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedIntValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = PumpConfigurationAndControl::Attributes::LifetimeEnergyConsumed::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedIntValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -56295,27 +55869,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = PumpConfigurationAndControl::Attributes::OperationMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = PumpConfigurationAndControl::Attributes::OperationMode::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -56365,27 +55933,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = PumpConfigurationAndControl::Attributes::ControlMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = PumpConfigurationAndControl::Attributes::ControlMode::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58115,27 +57677,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::HVACSystemTypeConfiguration::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::HVACSystemTypeConfiguration::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58185,27 +57741,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::LocalTemperatureCalibration::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.charValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::LocalTemperatureCalibration::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.charValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58255,27 +57805,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::OccupiedCoolingSetpoint::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.shortValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::OccupiedCoolingSetpoint::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.shortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58325,27 +57869,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::OccupiedHeatingSetpoint::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.shortValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::OccupiedHeatingSetpoint::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.shortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58395,27 +57933,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::UnoccupiedCoolingSetpoint::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.shortValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::UnoccupiedCoolingSetpoint::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.shortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58465,27 +57997,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::UnoccupiedHeatingSetpoint::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.shortValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::UnoccupiedHeatingSetpoint::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.shortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58535,27 +58061,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::MinHeatSetpointLimit::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.shortValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::MinHeatSetpointLimit::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.shortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58605,27 +58125,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::MaxHeatSetpointLimit::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.shortValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::MaxHeatSetpointLimit::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.shortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58675,27 +58189,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::MinCoolSetpointLimit::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.shortValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::MinCoolSetpointLimit::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.shortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58745,27 +58253,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::MaxCoolSetpointLimit::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.shortValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::MaxCoolSetpointLimit::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.shortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58815,27 +58317,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::MinSetpointDeadBand::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.charValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::MinSetpointDeadBand::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.charValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58885,27 +58381,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::RemoteSensing::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::RemoteSensing::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -58955,27 +58445,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::ControlSequenceOfOperation::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::ControlSequenceOfOperation::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -59025,27 +58509,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::SystemMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::SystemMode::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -59239,27 +58717,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::TemperatureSetpointHold::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::TemperatureSetpointHold::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -59309,32 +58781,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::TemperatureSetpointHoldDuration::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedShortValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::TemperatureSetpointHoldDuration::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedShortValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -59384,27 +58850,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::ThermostatProgrammingOperationMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::ThermostatProgrammingOperationMode::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -59598,32 +59058,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::OccupiedSetback::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::OccupiedSetback::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -59745,32 +59199,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::UnoccupiedSetback::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::UnoccupiedSetback::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -59892,27 +59340,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::EmergencyHeatDelta::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::EmergencyHeatDelta::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -59962,27 +59404,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::ACType::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::ACType::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -60032,27 +59468,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::ACCapacity::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::ACCapacity::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -60102,27 +59532,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::ACRefrigerantType::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::ACRefrigerantType::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -60172,27 +59596,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::ACCompressorType::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::ACCompressorType::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -60242,27 +59660,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::ACErrorCode::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedIntValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::ACErrorCode::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedIntValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -60312,27 +59724,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::ACLouverPosition::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::ACLouverPosition::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -60418,27 +59824,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = Thermostat::Attributes::ACCapacityformat::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = Thermostat::Attributes::ACCapacityformat::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -62890,27 +62290,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = FanControl::Attributes::FanMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = FanControl::Attributes::FanMode::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -62960,27 +62354,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = FanControl::Attributes::FanModeSequence::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = FanControl::Attributes::FanModeSequence::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -63030,32 +62418,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = FanControl::Attributes::PercentSetting::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = FanControl::Attributes::PercentSetting::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -63177,32 +62559,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = FanControl::Attributes::SpeedSetting::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = FanControl::Attributes::SpeedSetting::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -63324,27 +62700,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = FanControl::Attributes::RockSetting::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = FanControl::Attributes::RockSetting::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -63430,27 +62800,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = FanControl::Attributes::WindSetting::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = FanControl::Attributes::WindSetting::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -63500,27 +62864,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = FanControl::Attributes::AirflowDirection::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = FanControl::Attributes::AirflowDirection::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -64421,27 +63779,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ThermostatUserInterfaceConfiguration::Attributes::TemperatureDisplayMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = ThermostatUserInterfaceConfiguration::Attributes::TemperatureDisplayMode::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -64491,27 +63843,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ThermostatUserInterfaceConfiguration::Attributes::KeypadLockout::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = ThermostatUserInterfaceConfiguration::Attributes::KeypadLockout::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -64561,27 +63907,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ThermostatUserInterfaceConfiguration::Attributes::ScheduleProgrammingVisibility::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = ThermostatUserInterfaceConfiguration::Attributes::ScheduleProgrammingVisibility::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -65959,27 +65299,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::Options::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::Options::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -66713,27 +66047,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::WhitePointX::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::WhitePointX::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -66783,27 +66111,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::WhitePointY::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::WhitePointY::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -66853,27 +66175,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::ColorPointRX::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::ColorPointRX::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -66923,27 +66239,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::ColorPointRY::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::ColorPointRY::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -66993,32 +66303,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::ColorPointRIntensity::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::ColorPointRIntensity::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -67068,27 +66372,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::ColorPointGX::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::ColorPointGX::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -67138,27 +66436,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::ColorPointGY::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::ColorPointGY::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -67208,32 +66500,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::ColorPointGIntensity::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::ColorPointGIntensity::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -67283,27 +66569,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::ColorPointBX::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::ColorPointBX::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -67353,27 +66633,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::ColorPointBY::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::ColorPointBY::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -67423,32 +66697,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::ColorPointBIntensity::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::ColorPointBIntensity::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -67894,32 +67162,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ColorControl::Attributes::StartUpColorTemperatureMireds::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedShortValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = ColorControl::Attributes::StartUpColorTemperatureMireds::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedShortValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -70515,27 +69777,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BallastConfiguration::Attributes::MinLevel::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = BallastConfiguration::Attributes::MinLevel::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -70585,27 +69841,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BallastConfiguration::Attributes::MaxLevel::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = BallastConfiguration::Attributes::MaxLevel::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -70655,32 +69905,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BallastConfiguration::Attributes::IntrinsicBallastFactor::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = BallastConfiguration::Attributes::IntrinsicBallastFactor::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -70730,32 +69974,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BallastConfiguration::Attributes::BallastFactorAdjustment::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = BallastConfiguration::Attributes::BallastFactorAdjustment::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -70841,27 +70079,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BallastConfiguration::Attributes::LampType::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = BallastConfiguration::Attributes::LampType::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -70911,27 +70143,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BallastConfiguration::Attributes::LampManufacturer::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = BallastConfiguration::Attributes::LampManufacturer::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -70981,32 +70207,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BallastConfiguration::Attributes::LampRatedHours::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedIntValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = BallastConfiguration::Attributes::LampRatedHours::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedIntValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -71056,32 +70276,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BallastConfiguration::Attributes::LampBurnHours::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedIntValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = BallastConfiguration::Attributes::LampBurnHours::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedIntValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -71131,27 +70345,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BallastConfiguration::Attributes::LampAlarmMode::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = BallastConfiguration::Attributes::LampAlarmMode::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -71201,32 +70409,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = BallastConfiguration::Attributes::LampBurnHoursTripPoint::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedIntValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = BallastConfiguration::Attributes::LampBurnHoursTripPoint::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedIntValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -76308,27 +75510,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OccupancySensing::Attributes::PIROccupiedToUnoccupiedDelay::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = OccupancySensing::Attributes::PIROccupiedToUnoccupiedDelay::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -76378,27 +75574,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OccupancySensing::Attributes::PIRUnoccupiedToOccupiedDelay::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = OccupancySensing::Attributes::PIRUnoccupiedToOccupiedDelay::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -76448,27 +75638,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OccupancySensing::Attributes::PIRUnoccupiedToOccupiedThreshold::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = OccupancySensing::Attributes::PIRUnoccupiedToOccupiedThreshold::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -76518,27 +75702,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OccupancySensing::Attributes::UltrasonicOccupiedToUnoccupiedDelay::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = OccupancySensing::Attributes::UltrasonicOccupiedToUnoccupiedDelay::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -76588,27 +75766,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OccupancySensing::Attributes::UltrasonicUnoccupiedToOccupiedDelay::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = OccupancySensing::Attributes::UltrasonicUnoccupiedToOccupiedDelay::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -76658,27 +75830,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OccupancySensing::Attributes::UltrasonicUnoccupiedToOccupiedThreshold::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = OccupancySensing::Attributes::UltrasonicUnoccupiedToOccupiedThreshold::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -76728,27 +75894,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OccupancySensing::Attributes::PhysicalContactOccupiedToUnoccupiedDelay::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = OccupancySensing::Attributes::PhysicalContactOccupiedToUnoccupiedDelay::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -76798,27 +75958,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OccupancySensing::Attributes::PhysicalContactUnoccupiedToOccupiedDelay::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = OccupancySensing::Attributes::PhysicalContactUnoccupiedToOccupiedDelay::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -76868,27 +76022,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = OccupancySensing::Attributes::PhysicalContactUnoccupiedToOccupiedThreshold::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = OccupancySensing::Attributes::PhysicalContactUnoccupiedToOccupiedThreshold::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -88958,27 +88106,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ContentLauncher::Attributes::SupportedStreamingProtocols::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedIntValue;
+        ListFreer listFreer;
+        using TypeInfo = ContentLauncher::Attributes::SupportedStreamingProtocols::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedIntValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -90270,37 +89412,31 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ApplicationLauncher::Attributes::CurrentApp::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0.application.catalogVendorID = value.application.catalogVendorID.unsignedShortValue;
-                nonNullValue_0.application.applicationID = AsCharSpan(value.application.applicationID);
-                if (value.endpoint != nil) {
-                    auto & definedValue_2 = nonNullValue_0.endpoint.Emplace();
-                    definedValue_2 = value.endpoint.unsignedShortValue;
-                }
-            }
+        ListFreer listFreer;
+        using TypeInfo = ApplicationLauncher::Attributes::CurrentApp::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                              nonNullValue_0.application.catalogVendorID = value.application.catalogVendorID.unsignedShortValue;
+       nonNullValue_0.application.applicationID = AsCharSpan(value.application.applicationID);
+       if (value.endpoint != nil) {
+         auto & definedValue_2 = nonNullValue_0.endpoint.Emplace();
+                 definedValue_2 = value.endpoint.unsignedShortValue;
+  }
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -94525,27 +93661,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ElectricalMeasurement::Attributes::AverageRmsVoltageMeasurementPeriod::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ElectricalMeasurement::Attributes::AverageRmsVoltageMeasurementPeriod::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -94595,27 +93725,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ElectricalMeasurement::Attributes::AverageRmsUnderVoltageCounter::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ElectricalMeasurement::Attributes::AverageRmsUnderVoltageCounter::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -94665,27 +93789,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ElectricalMeasurement::Attributes::RmsExtremeOverVoltagePeriod::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ElectricalMeasurement::Attributes::RmsExtremeOverVoltagePeriod::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -94735,27 +93853,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ElectricalMeasurement::Attributes::RmsExtremeUnderVoltagePeriod::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ElectricalMeasurement::Attributes::RmsExtremeUnderVoltagePeriod::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -94805,27 +93917,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ElectricalMeasurement::Attributes::RmsVoltageSagPeriod::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ElectricalMeasurement::Attributes::RmsVoltageSagPeriod::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -94875,27 +93981,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ElectricalMeasurement::Attributes::RmsVoltageSwellPeriod::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ElectricalMeasurement::Attributes::RmsVoltageSwellPeriod::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -95161,27 +94261,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ElectricalMeasurement::Attributes::OverloadAlarmsMask::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = ElectricalMeasurement::Attributes::OverloadAlarmsMask::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -95303,27 +94397,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = ElectricalMeasurement::Attributes::AcOverloadAlarmsMask::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = ElectricalMeasurement::Attributes::AcOverloadAlarmsMask::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -102846,27 +101934,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Boolean::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Boolean::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -102916,27 +101998,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Bitmap8::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Bitmap8::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -102986,27 +102062,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Bitmap16::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedShortValue);
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Bitmap16::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedShortValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103056,27 +102126,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Bitmap32::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedIntValue);
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Bitmap32::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedIntValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103126,27 +102190,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Bitmap64::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedLongLongValue);
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Bitmap64::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedLongLongValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103196,27 +102254,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int8u::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int8u::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103266,27 +102318,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int16u::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int16u::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103336,27 +102382,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int24u::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedIntValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int24u::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedIntValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103406,27 +102446,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int32u::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedIntValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int32u::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedIntValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103476,27 +102510,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int40u::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedLongLongValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int40u::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedLongLongValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103546,27 +102574,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int48u::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedLongLongValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int48u::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedLongLongValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103616,27 +102638,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int56u::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedLongLongValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int56u::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedLongLongValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103686,27 +102702,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int64u::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedLongLongValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int64u::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedLongLongValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103756,27 +102766,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int8s::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.charValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int8s::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.charValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103826,27 +102830,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int16s::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.shortValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int16s::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.shortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103896,27 +102894,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int24s::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.intValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int24s::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.intValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -103966,27 +102958,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int32s::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.intValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int32s::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.intValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104036,27 +103022,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int40s::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.longLongValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int40s::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.longLongValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104106,27 +103086,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int48s::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.longLongValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int48s::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.longLongValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104176,27 +103150,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int56s::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.longLongValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int56s::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.longLongValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104246,27 +103214,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Int64s::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.longLongValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Int64s::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.longLongValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104316,27 +103278,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Enum8::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Enum8::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104386,27 +103342,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Enum16::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Enum16::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104456,27 +103406,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::FloatSingle::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.floatValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::FloatSingle::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.floatValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104526,27 +103470,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::FloatDouble::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.doubleValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::FloatDouble::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.doubleValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104596,27 +103534,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::OctetString::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsByteSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::OctetString::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsByteSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104666,48 +103598,42 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::ListInt8u::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[NSNumber class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (NSNumber *) value[i_0];
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::ListInt8u::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [NSNumber class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
+                }
+                auto element_0 = (NSNumber *)value[i_0];
                         listHolder_0->mList[i_0] = element_0.unsignedCharValue;
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
-                }
+      }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104757,48 +103683,42 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::ListOctetString::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[NSData class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (NSData *) value[i_0];
-                        listHolder_0->mList[i_0] = AsByteSpan(element_0);
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::ListOctetString::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [NSData class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
                 }
+                auto element_0 = (NSData *)value[i_0];
+                  listHolder_0->mList[i_0] = AsByteSpan(element_0);
+              }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104848,49 +103768,43 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::ListStructOctetString::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[MTRUnitTestingClusterTestListStructOctet class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (MTRUnitTestingClusterTestListStructOctet *) value[i_0];
-                        listHolder_0->mList[i_0].member1 = element_0.member1.unsignedLongLongValue;
-                        listHolder_0->mList[i_0].member2 = AsByteSpan(element_0.member2);
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::ListStructOctetString::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [MTRUnitTestingClusterTestListStructOctet class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
                 }
+                auto element_0 = (MTRUnitTestingClusterTestListStructOctet *)value[i_0];
+                             listHolder_0->mList[i_0].member1 = element_0.member1.unsignedLongLongValue;
+       listHolder_0->mList[i_0].member2 = AsByteSpan(element_0.member2);
+      }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -104940,27 +103854,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::LongOctetString::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsByteSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::LongOctetString::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsByteSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105010,27 +103918,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::CharString::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::CharString::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105080,27 +103982,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::LongCharString::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = AsCharSpan(value);
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::LongCharString::TypeInfo;
+        TypeInfo::Type cppValue;
+          cppValue = AsCharSpan(value);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105150,27 +104046,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::EpochUs::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedLongLongValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::EpochUs::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedLongLongValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105220,27 +104110,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::EpochS::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedIntValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::EpochS::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedIntValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105290,27 +104174,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::VendorId::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedShortValue);
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::VendorId::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedShortValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105360,207 +104238,201 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::ListNullablesAndOptionalsStruct::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[MTRUnitTestingClusterNullablesAndOptionalsStruct class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (MTRUnitTestingClusterNullablesAndOptionalsStruct *) value[i_0];
-                        if (element_0.nullableInt == nil) {
-                            listHolder_0->mList[i_0].nullableInt.SetNull();
-                        } else {
-                            auto & nonNullValue_2 = listHolder_0->mList[i_0].nullableInt.SetNonNull();
-                            nonNullValue_2 = element_0.nullableInt.unsignedShortValue;
-                        }
-                        if (element_0.optionalInt != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].optionalInt.Emplace();
-                            definedValue_2 = element_0.optionalInt.unsignedShortValue;
-                        }
-                        if (element_0.nullableOptionalInt != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].nullableOptionalInt.Emplace();
-                            if (element_0.nullableOptionalInt == nil) {
-                                definedValue_2.SetNull();
-                            } else {
-                                auto & nonNullValue_3 = definedValue_2.SetNonNull();
-                                nonNullValue_3 = element_0.nullableOptionalInt.unsignedShortValue;
-                            }
-                        }
-                        if (element_0.nullableString == nil) {
-                            listHolder_0->mList[i_0].nullableString.SetNull();
-                        } else {
-                            auto & nonNullValue_2 = listHolder_0->mList[i_0].nullableString.SetNonNull();
-                            nonNullValue_2 = AsCharSpan(element_0.nullableString);
-                        }
-                        if (element_0.optionalString != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].optionalString.Emplace();
-                            definedValue_2 = AsCharSpan(element_0.optionalString);
-                        }
-                        if (element_0.nullableOptionalString != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].nullableOptionalString.Emplace();
-                            if (element_0.nullableOptionalString == nil) {
-                                definedValue_2.SetNull();
-                            } else {
-                                auto & nonNullValue_3 = definedValue_2.SetNonNull();
-                                nonNullValue_3 = AsCharSpan(element_0.nullableOptionalString);
-                            }
-                        }
-                        if (element_0.nullableStruct == nil) {
-                            listHolder_0->mList[i_0].nullableStruct.SetNull();
-                        } else {
-                            auto & nonNullValue_2 = listHolder_0->mList[i_0].nullableStruct.SetNonNull();
-                            nonNullValue_2.a = element_0.nullableStruct.a.unsignedCharValue;
-                            nonNullValue_2.b = element_0.nullableStruct.b.boolValue;
-                            nonNullValue_2.c = static_cast<std::remove_reference_t<decltype(nonNullValue_2.c)>>(element_0.nullableStruct.c.unsignedCharValue);
-                            nonNullValue_2.d = AsByteSpan(element_0.nullableStruct.d);
-                            nonNullValue_2.e = AsCharSpan(element_0.nullableStruct.e);
-                            nonNullValue_2.f = static_cast<std::remove_reference_t<decltype(nonNullValue_2.f)>>(element_0.nullableStruct.f.unsignedCharValue);
-                            nonNullValue_2.g = element_0.nullableStruct.g.floatValue;
-                            nonNullValue_2.h = element_0.nullableStruct.h.doubleValue;
-                        }
-                        if (element_0.optionalStruct != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].optionalStruct.Emplace();
-                            definedValue_2.a = element_0.optionalStruct.a.unsignedCharValue;
-                            definedValue_2.b = element_0.optionalStruct.b.boolValue;
-                            definedValue_2.c = static_cast<std::remove_reference_t<decltype(definedValue_2.c)>>(element_0.optionalStruct.c.unsignedCharValue);
-                            definedValue_2.d = AsByteSpan(element_0.optionalStruct.d);
-                            definedValue_2.e = AsCharSpan(element_0.optionalStruct.e);
-                            definedValue_2.f = static_cast<std::remove_reference_t<decltype(definedValue_2.f)>>(element_0.optionalStruct.f.unsignedCharValue);
-                            definedValue_2.g = element_0.optionalStruct.g.floatValue;
-                            definedValue_2.h = element_0.optionalStruct.h.doubleValue;
-                        }
-                        if (element_0.nullableOptionalStruct != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].nullableOptionalStruct.Emplace();
-                            if (element_0.nullableOptionalStruct == nil) {
-                                definedValue_2.SetNull();
-                            } else {
-                                auto & nonNullValue_3 = definedValue_2.SetNonNull();
-                                nonNullValue_3.a = element_0.nullableOptionalStruct.a.unsignedCharValue;
-                                nonNullValue_3.b = element_0.nullableOptionalStruct.b.boolValue;
-                                nonNullValue_3.c = static_cast<std::remove_reference_t<decltype(nonNullValue_3.c)>>(element_0.nullableOptionalStruct.c.unsignedCharValue);
-                                nonNullValue_3.d = AsByteSpan(element_0.nullableOptionalStruct.d);
-                                nonNullValue_3.e = AsCharSpan(element_0.nullableOptionalStruct.e);
-                                nonNullValue_3.f = static_cast<std::remove_reference_t<decltype(nonNullValue_3.f)>>(element_0.nullableOptionalStruct.f.unsignedCharValue);
-                                nonNullValue_3.g = element_0.nullableOptionalStruct.g.floatValue;
-                                nonNullValue_3.h = element_0.nullableOptionalStruct.h.doubleValue;
-                            }
-                        }
-                        if (element_0.nullableList == nil) {
-                            listHolder_0->mList[i_0].nullableList.SetNull();
-                        } else {
-                            auto & nonNullValue_2 = listHolder_0->mList[i_0].nullableList.SetNonNull();
-                            {
-                                using ListType_3 = std::remove_reference_t<decltype(nonNullValue_2)>;
-                                using ListMemberType_3 = ListMemberTypeGetter<ListType_3>::Type;
-                                if (element_0.nullableList.count != 0) {
-                                    auto * listHolder_3 = new ListHolder<ListMemberType_3>(element_0.nullableList.count);
-                                    if (listHolder_3 == nullptr || listHolder_3->mList == nullptr) {
-                                        return CHIP_ERROR_INVALID_ARGUMENT;
-                                    }
-                                    listFreer.add(listHolder_3);
-                                    for (size_t i_3 = 0; i_3 < element_0.nullableList.count; ++i_3) {
-                                        if (![element_0.nullableList[i_3] isKindOfClass:[NSNumber class]]) {
-                                            // Wrong kind of value.
-                                            return CHIP_ERROR_INVALID_ARGUMENT;
-                                        }
-                                        auto element_3 = (NSNumber *) element_0.nullableList[i_3];
-                                        listHolder_3->mList[i_3] = static_cast<std::remove_reference_t<decltype(listHolder_3->mList[i_3])>>(element_3.unsignedCharValue);
-                                    }
-                                    nonNullValue_2 = ListType_3(listHolder_3->mList, element_0.nullableList.count);
-                                } else {
-                                    nonNullValue_2 = ListType_3();
-                                }
-                            }
-                        }
-                        if (element_0.optionalList != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].optionalList.Emplace();
-                            {
-                                using ListType_3 = std::remove_reference_t<decltype(definedValue_2)>;
-                                using ListMemberType_3 = ListMemberTypeGetter<ListType_3>::Type;
-                                if (element_0.optionalList.count != 0) {
-                                    auto * listHolder_3 = new ListHolder<ListMemberType_3>(element_0.optionalList.count);
-                                    if (listHolder_3 == nullptr || listHolder_3->mList == nullptr) {
-                                        return CHIP_ERROR_INVALID_ARGUMENT;
-                                    }
-                                    listFreer.add(listHolder_3);
-                                    for (size_t i_3 = 0; i_3 < element_0.optionalList.count; ++i_3) {
-                                        if (![element_0.optionalList[i_3] isKindOfClass:[NSNumber class]]) {
-                                            // Wrong kind of value.
-                                            return CHIP_ERROR_INVALID_ARGUMENT;
-                                        }
-                                        auto element_3 = (NSNumber *) element_0.optionalList[i_3];
-                                        listHolder_3->mList[i_3] = static_cast<std::remove_reference_t<decltype(listHolder_3->mList[i_3])>>(element_3.unsignedCharValue);
-                                    }
-                                    definedValue_2 = ListType_3(listHolder_3->mList, element_0.optionalList.count);
-                                } else {
-                                    definedValue_2 = ListType_3();
-                                }
-                            }
-                        }
-                        if (element_0.nullableOptionalList != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].nullableOptionalList.Emplace();
-                            if (element_0.nullableOptionalList == nil) {
-                                definedValue_2.SetNull();
-                            } else {
-                                auto & nonNullValue_3 = definedValue_2.SetNonNull();
-                                {
-                                    using ListType_4 = std::remove_reference_t<decltype(nonNullValue_3)>;
-                                    using ListMemberType_4 = ListMemberTypeGetter<ListType_4>::Type;
-                                    if (element_0.nullableOptionalList.count != 0) {
-                                        auto * listHolder_4 = new ListHolder<ListMemberType_4>(element_0.nullableOptionalList.count);
-                                        if (listHolder_4 == nullptr || listHolder_4->mList == nullptr) {
-                                            return CHIP_ERROR_INVALID_ARGUMENT;
-                                        }
-                                        listFreer.add(listHolder_4);
-                                        for (size_t i_4 = 0; i_4 < element_0.nullableOptionalList.count; ++i_4) {
-                                            if (![element_0.nullableOptionalList[i_4] isKindOfClass:[NSNumber class]]) {
-                                                // Wrong kind of value.
-                                                return CHIP_ERROR_INVALID_ARGUMENT;
-                                            }
-                                            auto element_4 = (NSNumber *) element_0.nullableOptionalList[i_4];
-                                            listHolder_4->mList[i_4] = static_cast<std::remove_reference_t<decltype(listHolder_4->mList[i_4])>>(element_4.unsignedCharValue);
-                                        }
-                                        nonNullValue_3 = ListType_4(listHolder_4->mList, element_0.nullableOptionalList.count);
-                                    } else {
-                                        nonNullValue_3 = ListType_4();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::ListNullablesAndOptionalsStruct::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [MTRUnitTestingClusterNullablesAndOptionalsStruct class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
                 }
+                auto element_0 = (MTRUnitTestingClusterNullablesAndOptionalsStruct *)value[i_0];
+                       if (element_0.nullableInt == nil) {
+         listHolder_0->mList[i_0].nullableInt.SetNull();
+       } else {
+         auto & nonNullValue_2 = listHolder_0->mList[i_0].nullableInt.SetNonNull();
+                 nonNullValue_2 = element_0.nullableInt.unsignedShortValue;
+  }
+       if (element_0.optionalInt != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].optionalInt.Emplace();
+                 definedValue_2 = element_0.optionalInt.unsignedShortValue;
+  }
+       if (element_0.nullableOptionalInt != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].nullableOptionalInt.Emplace();
+           if (element_0.nullableOptionalInt == nil) {
+             definedValue_2.SetNull();
+           } else {
+             auto & nonNullValue_3 = definedValue_2.SetNonNull();
+                     nonNullValue_3 = element_0.nullableOptionalInt.unsignedShortValue;
+  }
+       }
+       if (element_0.nullableString == nil) {
+         listHolder_0->mList[i_0].nullableString.SetNull();
+       } else {
+         auto & nonNullValue_2 = listHolder_0->mList[i_0].nullableString.SetNonNull();
+           nonNullValue_2 = AsCharSpan(element_0.nullableString);
+       }
+       if (element_0.optionalString != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].optionalString.Emplace();
+           definedValue_2 = AsCharSpan(element_0.optionalString);
+       }
+       if (element_0.nullableOptionalString != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].nullableOptionalString.Emplace();
+           if (element_0.nullableOptionalString == nil) {
+             definedValue_2.SetNull();
+           } else {
+             auto & nonNullValue_3 = definedValue_2.SetNonNull();
+               nonNullValue_3 = AsCharSpan(element_0.nullableOptionalString);
+           }
+       }
+       if (element_0.nullableStruct == nil) {
+         listHolder_0->mList[i_0].nullableStruct.SetNull();
+       } else {
+         auto & nonNullValue_2 = listHolder_0->mList[i_0].nullableStruct.SetNonNull();
+                      nonNullValue_2.a = element_0.nullableStruct.a.unsignedCharValue;
+             nonNullValue_2.b = element_0.nullableStruct.b.boolValue;
+           nonNullValue_2.c = static_cast<std::remove_reference_t<decltype(nonNullValue_2.c)>>(element_0.nullableStruct.c.unsignedCharValue);
+       nonNullValue_2.d = AsByteSpan(element_0.nullableStruct.d);
+       nonNullValue_2.e = AsCharSpan(element_0.nullableStruct.e);
+             nonNullValue_2.f = static_cast<std::remove_reference_t<decltype(nonNullValue_2.f)>>(element_0.nullableStruct.f.unsignedCharValue);
+             nonNullValue_2.g = element_0.nullableStruct.g.floatValue;
+             nonNullValue_2.h = element_0.nullableStruct.h.doubleValue;
+  }
+       if (element_0.optionalStruct != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].optionalStruct.Emplace();
+                      definedValue_2.a = element_0.optionalStruct.a.unsignedCharValue;
+             definedValue_2.b = element_0.optionalStruct.b.boolValue;
+           definedValue_2.c = static_cast<std::remove_reference_t<decltype(definedValue_2.c)>>(element_0.optionalStruct.c.unsignedCharValue);
+       definedValue_2.d = AsByteSpan(element_0.optionalStruct.d);
+       definedValue_2.e = AsCharSpan(element_0.optionalStruct.e);
+             definedValue_2.f = static_cast<std::remove_reference_t<decltype(definedValue_2.f)>>(element_0.optionalStruct.f.unsignedCharValue);
+             definedValue_2.g = element_0.optionalStruct.g.floatValue;
+             definedValue_2.h = element_0.optionalStruct.h.doubleValue;
+  }
+       if (element_0.nullableOptionalStruct != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].nullableOptionalStruct.Emplace();
+           if (element_0.nullableOptionalStruct == nil) {
+             definedValue_2.SetNull();
+           } else {
+             auto & nonNullValue_3 = definedValue_2.SetNonNull();
+                          nonNullValue_3.a = element_0.nullableOptionalStruct.a.unsignedCharValue;
+             nonNullValue_3.b = element_0.nullableOptionalStruct.b.boolValue;
+           nonNullValue_3.c = static_cast<std::remove_reference_t<decltype(nonNullValue_3.c)>>(element_0.nullableOptionalStruct.c.unsignedCharValue);
+       nonNullValue_3.d = AsByteSpan(element_0.nullableOptionalStruct.d);
+       nonNullValue_3.e = AsCharSpan(element_0.nullableOptionalStruct.e);
+             nonNullValue_3.f = static_cast<std::remove_reference_t<decltype(nonNullValue_3.f)>>(element_0.nullableOptionalStruct.f.unsignedCharValue);
+             nonNullValue_3.g = element_0.nullableOptionalStruct.g.floatValue;
+             nonNullValue_3.h = element_0.nullableOptionalStruct.h.doubleValue;
+  }
+       }
+       if (element_0.nullableList == nil) {
+         listHolder_0->mList[i_0].nullableList.SetNull();
+       } else {
+         auto & nonNullValue_2 = listHolder_0->mList[i_0].nullableList.SetNonNull();
+           {
+             using ListType_3 = std::remove_reference_t<decltype(nonNullValue_2)>;
+             using ListMemberType_3 = ListMemberTypeGetter<ListType_3>::Type;
+             if (element_0.nullableList.count != 0) {
+               auto * listHolder_3 = new ListHolder<ListMemberType_3>(element_0.nullableList.count);
+               if (listHolder_3 == nullptr || listHolder_3->mList == nullptr) {
+                 return CHIP_ERROR_INVALID_ARGUMENT;
+               }
+               listFreer.add(listHolder_3);
+               for (size_t i_3 = 0; i_3 < element_0.nullableList.count; ++i_3) {
+                 if ( ! [element_0.nullableList[i_3] isKindOfClass: [NSNumber class]] ) {
+                   // Wrong kind of value.
+                   return CHIP_ERROR_INVALID_ARGUMENT;
+                 }
+                 auto element_3 = (NSNumber *)element_0.nullableList[i_3];
+                       listHolder_3->mList[i_3] = static_cast<std::remove_reference_t<decltype(listHolder_3->mList[i_3])>>(element_3.unsignedCharValue);
+      }
+               nonNullValue_2 = ListType_3(listHolder_3->mList, element_0.nullableList.count);
+             } else {
+               nonNullValue_2 = ListType_3();
+             }
+           }
+       }
+       if (element_0.optionalList != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].optionalList.Emplace();
+           {
+             using ListType_3 = std::remove_reference_t<decltype(definedValue_2)>;
+             using ListMemberType_3 = ListMemberTypeGetter<ListType_3>::Type;
+             if (element_0.optionalList.count != 0) {
+               auto * listHolder_3 = new ListHolder<ListMemberType_3>(element_0.optionalList.count);
+               if (listHolder_3 == nullptr || listHolder_3->mList == nullptr) {
+                 return CHIP_ERROR_INVALID_ARGUMENT;
+               }
+               listFreer.add(listHolder_3);
+               for (size_t i_3 = 0; i_3 < element_0.optionalList.count; ++i_3) {
+                 if ( ! [element_0.optionalList[i_3] isKindOfClass: [NSNumber class]] ) {
+                   // Wrong kind of value.
+                   return CHIP_ERROR_INVALID_ARGUMENT;
+                 }
+                 auto element_3 = (NSNumber *)element_0.optionalList[i_3];
+                       listHolder_3->mList[i_3] = static_cast<std::remove_reference_t<decltype(listHolder_3->mList[i_3])>>(element_3.unsignedCharValue);
+      }
+               definedValue_2 = ListType_3(listHolder_3->mList, element_0.optionalList.count);
+             } else {
+               definedValue_2 = ListType_3();
+             }
+           }
+       }
+       if (element_0.nullableOptionalList != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].nullableOptionalList.Emplace();
+           if (element_0.nullableOptionalList == nil) {
+             definedValue_2.SetNull();
+           } else {
+             auto & nonNullValue_3 = definedValue_2.SetNonNull();
+               {
+                 using ListType_4 = std::remove_reference_t<decltype(nonNullValue_3)>;
+                 using ListMemberType_4 = ListMemberTypeGetter<ListType_4>::Type;
+                 if (element_0.nullableOptionalList.count != 0) {
+                   auto * listHolder_4 = new ListHolder<ListMemberType_4>(element_0.nullableOptionalList.count);
+                   if (listHolder_4 == nullptr || listHolder_4->mList == nullptr) {
+                     return CHIP_ERROR_INVALID_ARGUMENT;
+                   }
+                   listFreer.add(listHolder_4);
+                   for (size_t i_4 = 0; i_4 < element_0.nullableOptionalList.count; ++i_4) {
+                     if ( ! [element_0.nullableOptionalList[i_4] isKindOfClass: [NSNumber class]] ) {
+                       // Wrong kind of value.
+                       return CHIP_ERROR_INVALID_ARGUMENT;
+                     }
+                     auto element_4 = (NSNumber *)element_0.nullableOptionalList[i_4];
+                           listHolder_4->mList[i_4] = static_cast<std::remove_reference_t<decltype(listHolder_4->mList[i_4])>>(element_4.unsignedCharValue);
+      }
+                   nonNullValue_3 = ListType_4(listHolder_4->mList, element_0.nullableOptionalList.count);
+                 } else {
+                   nonNullValue_3 = ListType_4();
+                 }
+               }
+           }
+       }
+      }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105610,27 +104482,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::EnumAttr::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::EnumAttr::TypeInfo;
+        TypeInfo::Type cppValue;
+              cppValue = static_cast<std::remove_reference_t<decltype(cppValue)>>(value.unsignedCharValue);
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105680,34 +104546,28 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::StructAttr::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue.a = value.a.unsignedCharValue;
-            cppValue.b = value.b.boolValue;
-            cppValue.c = static_cast<std::remove_reference_t<decltype(cppValue.c)>>(value.c.unsignedCharValue);
-            cppValue.d = AsByteSpan(value.d);
-            cppValue.e = AsCharSpan(value.e);
-            cppValue.f = static_cast<std::remove_reference_t<decltype(cppValue.f)>>(value.f.unsignedCharValue);
-            cppValue.g = value.g.floatValue;
-            cppValue.h = value.h.doubleValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::StructAttr::TypeInfo;
+        TypeInfo::Type cppValue;
+                     cppValue.a = value.a.unsignedCharValue;
+             cppValue.b = value.b.boolValue;
+           cppValue.c = static_cast<std::remove_reference_t<decltype(cppValue.c)>>(value.c.unsignedCharValue);
+       cppValue.d = AsByteSpan(value.d);
+       cppValue.e = AsCharSpan(value.e);
+             cppValue.f = static_cast<std::remove_reference_t<decltype(cppValue.f)>>(value.f.unsignedCharValue);
+             cppValue.g = value.g.floatValue;
+             cppValue.h = value.h.doubleValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105757,27 +104617,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::RangeRestrictedInt8u::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::RangeRestrictedInt8u::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105827,27 +104681,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::RangeRestrictedInt8s::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.charValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::RangeRestrictedInt8s::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.charValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105897,27 +104745,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::RangeRestrictedInt16u::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedShortValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::RangeRestrictedInt16u::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedShortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -105967,27 +104809,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::RangeRestrictedInt16s::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.shortValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::RangeRestrictedInt16s::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.shortValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106037,48 +104873,42 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::ListLongOctetString::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[NSData class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (NSData *) value[i_0];
-                        listHolder_0->mList[i_0] = AsByteSpan(element_0);
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::ListLongOctetString::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [NSData class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
                 }
+                auto element_0 = (NSData *)value[i_0];
+                  listHolder_0->mList[i_0] = AsByteSpan(element_0);
+              }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106128,99 +104958,93 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::ListFabricScoped::TypeInfo;
-            TypeInfo::Type cppValue;
-            {
-                using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
-                using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
-                if (value.count != 0) {
-                    auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
-                    if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
-                        return CHIP_ERROR_INVALID_ARGUMENT;
-                    }
-                    listFreer.add(listHolder_0);
-                    for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
-                        if (![value[i_0] isKindOfClass:[MTRUnitTestingClusterTestFabricScoped class]]) {
-                            // Wrong kind of value.
-                            return CHIP_ERROR_INVALID_ARGUMENT;
-                        }
-                        auto element_0 = (MTRUnitTestingClusterTestFabricScoped *) value[i_0];
-                        listHolder_0->mList[i_0].fabricSensitiveInt8u = element_0.fabricSensitiveInt8u.unsignedCharValue;
-                        if (element_0.optionalFabricSensitiveInt8u != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].optionalFabricSensitiveInt8u.Emplace();
-                            definedValue_2 = element_0.optionalFabricSensitiveInt8u.unsignedCharValue;
-                        }
-                        if (element_0.nullableFabricSensitiveInt8u == nil) {
-                            listHolder_0->mList[i_0].nullableFabricSensitiveInt8u.SetNull();
-                        } else {
-                            auto & nonNullValue_2 = listHolder_0->mList[i_0].nullableFabricSensitiveInt8u.SetNonNull();
-                            nonNullValue_2 = element_0.nullableFabricSensitiveInt8u.unsignedCharValue;
-                        }
-                        if (element_0.nullableOptionalFabricSensitiveInt8u != nil) {
-                            auto & definedValue_2 = listHolder_0->mList[i_0].nullableOptionalFabricSensitiveInt8u.Emplace();
-                            if (element_0.nullableOptionalFabricSensitiveInt8u == nil) {
-                                definedValue_2.SetNull();
-                            } else {
-                                auto & nonNullValue_3 = definedValue_2.SetNonNull();
-                                nonNullValue_3 = element_0.nullableOptionalFabricSensitiveInt8u.unsignedCharValue;
-                            }
-                        }
-                        listHolder_0->mList[i_0].fabricSensitiveCharString = AsCharSpan(element_0.fabricSensitiveCharString);
-                        listHolder_0->mList[i_0].fabricSensitiveStruct.a = element_0.fabricSensitiveStruct.a.unsignedCharValue;
-                        listHolder_0->mList[i_0].fabricSensitiveStruct.b = element_0.fabricSensitiveStruct.b.boolValue;
-                        listHolder_0->mList[i_0].fabricSensitiveStruct.c = static_cast<std::remove_reference_t<decltype(listHolder_0->mList[i_0].fabricSensitiveStruct.c)>>(element_0.fabricSensitiveStruct.c.unsignedCharValue);
-                        listHolder_0->mList[i_0].fabricSensitiveStruct.d = AsByteSpan(element_0.fabricSensitiveStruct.d);
-                        listHolder_0->mList[i_0].fabricSensitiveStruct.e = AsCharSpan(element_0.fabricSensitiveStruct.e);
-                        listHolder_0->mList[i_0].fabricSensitiveStruct.f = static_cast<std::remove_reference_t<decltype(listHolder_0->mList[i_0].fabricSensitiveStruct.f)>>(element_0.fabricSensitiveStruct.f.unsignedCharValue);
-                        listHolder_0->mList[i_0].fabricSensitiveStruct.g = element_0.fabricSensitiveStruct.g.floatValue;
-                        listHolder_0->mList[i_0].fabricSensitiveStruct.h = element_0.fabricSensitiveStruct.h.doubleValue;
-                        {
-                            using ListType_2 = std::remove_reference_t<decltype(listHolder_0->mList[i_0].fabricSensitiveInt8uList)>;
-                            using ListMemberType_2 = ListMemberTypeGetter<ListType_2>::Type;
-                            if (element_0.fabricSensitiveInt8uList.count != 0) {
-                                auto * listHolder_2 = new ListHolder<ListMemberType_2>(element_0.fabricSensitiveInt8uList.count);
-                                if (listHolder_2 == nullptr || listHolder_2->mList == nullptr) {
-                                    return CHIP_ERROR_INVALID_ARGUMENT;
-                                }
-                                listFreer.add(listHolder_2);
-                                for (size_t i_2 = 0; i_2 < element_0.fabricSensitiveInt8uList.count; ++i_2) {
-                                    if (![element_0.fabricSensitiveInt8uList[i_2] isKindOfClass:[NSNumber class]]) {
-                                        // Wrong kind of value.
-                                        return CHIP_ERROR_INVALID_ARGUMENT;
-                                    }
-                                    auto element_2 = (NSNumber *) element_0.fabricSensitiveInt8uList[i_2];
-                                    listHolder_2->mList[i_2] = element_2.unsignedCharValue;
-                                }
-                                listHolder_0->mList[i_0].fabricSensitiveInt8uList = ListType_2(listHolder_2->mList, element_0.fabricSensitiveInt8uList.count);
-                            } else {
-                                listHolder_0->mList[i_0].fabricSensitiveInt8uList = ListType_2();
-                            }
-                        }
-                        listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
-                    }
-                    cppValue = ListType_0(listHolder_0->mList, value.count);
-                } else {
-                    cppValue = ListType_0();
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::ListFabricScoped::TypeInfo;
+        TypeInfo::Type cppValue;
+          {
+            using ListType_0 = std::remove_reference_t<decltype(cppValue)>;
+            using ListMemberType_0 = ListMemberTypeGetter<ListType_0>::Type;
+            if (value.count != 0) {
+              auto * listHolder_0 = new ListHolder<ListMemberType_0>(value.count);
+              if (listHolder_0 == nullptr || listHolder_0->mList == nullptr) {
+                return CHIP_ERROR_INVALID_ARGUMENT;
+              }
+              listFreer.add(listHolder_0);
+              for (size_t i_0 = 0; i_0 < value.count; ++i_0) {
+                if ( ! [value[i_0] isKindOfClass: [MTRUnitTestingClusterTestFabricScoped class]] ) {
+                  // Wrong kind of value.
+                  return CHIP_ERROR_INVALID_ARGUMENT;
                 }
+                auto element_0 = (MTRUnitTestingClusterTestFabricScoped *)value[i_0];
+                             listHolder_0->mList[i_0].fabricSensitiveInt8u = element_0.fabricSensitiveInt8u.unsignedCharValue;
+       if (element_0.optionalFabricSensitiveInt8u != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].optionalFabricSensitiveInt8u.Emplace();
+                 definedValue_2 = element_0.optionalFabricSensitiveInt8u.unsignedCharValue;
+  }
+       if (element_0.nullableFabricSensitiveInt8u == nil) {
+         listHolder_0->mList[i_0].nullableFabricSensitiveInt8u.SetNull();
+       } else {
+         auto & nonNullValue_2 = listHolder_0->mList[i_0].nullableFabricSensitiveInt8u.SetNonNull();
+                 nonNullValue_2 = element_0.nullableFabricSensitiveInt8u.unsignedCharValue;
+  }
+       if (element_0.nullableOptionalFabricSensitiveInt8u != nil) {
+         auto & definedValue_2 = listHolder_0->mList[i_0].nullableOptionalFabricSensitiveInt8u.Emplace();
+           if (element_0.nullableOptionalFabricSensitiveInt8u == nil) {
+             definedValue_2.SetNull();
+           } else {
+             auto & nonNullValue_3 = definedValue_2.SetNonNull();
+                     nonNullValue_3 = element_0.nullableOptionalFabricSensitiveInt8u.unsignedCharValue;
+  }
+       }
+       listHolder_0->mList[i_0].fabricSensitiveCharString = AsCharSpan(element_0.fabricSensitiveCharString);
+                  listHolder_0->mList[i_0].fabricSensitiveStruct.a = element_0.fabricSensitiveStruct.a.unsignedCharValue;
+             listHolder_0->mList[i_0].fabricSensitiveStruct.b = element_0.fabricSensitiveStruct.b.boolValue;
+           listHolder_0->mList[i_0].fabricSensitiveStruct.c = static_cast<std::remove_reference_t<decltype(listHolder_0->mList[i_0].fabricSensitiveStruct.c)>>(element_0.fabricSensitiveStruct.c.unsignedCharValue);
+       listHolder_0->mList[i_0].fabricSensitiveStruct.d = AsByteSpan(element_0.fabricSensitiveStruct.d);
+       listHolder_0->mList[i_0].fabricSensitiveStruct.e = AsCharSpan(element_0.fabricSensitiveStruct.e);
+             listHolder_0->mList[i_0].fabricSensitiveStruct.f = static_cast<std::remove_reference_t<decltype(listHolder_0->mList[i_0].fabricSensitiveStruct.f)>>(element_0.fabricSensitiveStruct.f.unsignedCharValue);
+             listHolder_0->mList[i_0].fabricSensitiveStruct.g = element_0.fabricSensitiveStruct.g.floatValue;
+             listHolder_0->mList[i_0].fabricSensitiveStruct.h = element_0.fabricSensitiveStruct.h.doubleValue;
+       {
+         using ListType_2 = std::remove_reference_t<decltype(listHolder_0->mList[i_0].fabricSensitiveInt8uList)>;
+         using ListMemberType_2 = ListMemberTypeGetter<ListType_2>::Type;
+         if (element_0.fabricSensitiveInt8uList.count != 0) {
+           auto * listHolder_2 = new ListHolder<ListMemberType_2>(element_0.fabricSensitiveInt8uList.count);
+           if (listHolder_2 == nullptr || listHolder_2->mList == nullptr) {
+             return CHIP_ERROR_INVALID_ARGUMENT;
+           }
+           listFreer.add(listHolder_2);
+           for (size_t i_2 = 0; i_2 < element_0.fabricSensitiveInt8uList.count; ++i_2) {
+             if ( ! [element_0.fabricSensitiveInt8uList[i_2] isKindOfClass: [NSNumber class]] ) {
+               // Wrong kind of value.
+               return CHIP_ERROR_INVALID_ARGUMENT;
+             }
+             auto element_2 = (NSNumber *)element_0.fabricSensitiveInt8uList[i_2];
+                     listHolder_2->mList[i_2] = element_2.unsignedCharValue;
+      }
+           listHolder_0->mList[i_0].fabricSensitiveInt8uList = ListType_2(listHolder_2->mList, element_0.fabricSensitiveInt8uList.count);
+         } else {
+           listHolder_0->mList[i_0].fabricSensitiveInt8uList = ListType_2();
+         }
+       }
+             listHolder_0->mList[i_0].fabricIndex = element_0.fabricIndex.unsignedCharValue;
+      }
+              cppValue = ListType_0(listHolder_0->mList, value.count);
+            } else {
+              cppValue = ListType_0();
             }
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106270,30 +105094,24 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
-            if (!timedWriteTimeout.HasValue()) {
-                timedWriteTimeout.SetValue(MTR_DEFAULT_TIMED_INTERACTION_TIMEOUT_MS);
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
+        if (!timedWriteTimeout.HasValue()) {
+          timedWriteTimeout.SetValue(MTR_DEFAULT_TIMED_INTERACTION_TIMEOUT_MS);
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::TimedWriteBoolean::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::TimedWriteBoolean::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106343,27 +105161,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::GeneralErrorBoolean::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::GeneralErrorBoolean::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106413,27 +105225,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::ClusterErrorBoolean::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::ClusterErrorBoolean::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106483,27 +105289,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::Unsupported::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::Unsupported::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106553,32 +105353,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableBoolean::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.boolValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableBoolean::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.boolValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106628,32 +105422,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableBitmap8::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedCharValue);
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableBitmap8::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedCharValue);
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106703,32 +105491,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableBitmap16::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedShortValue);
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableBitmap16::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedShortValue);
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106778,32 +105560,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableBitmap32::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedIntValue);
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableBitmap32::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedIntValue);
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106853,32 +105629,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableBitmap64::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedLongLongValue);
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableBitmap64::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedLongLongValue);
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -106928,32 +105698,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt8u::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt8u::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107003,32 +105767,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt16u::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedShortValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt16u::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedShortValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107078,32 +105836,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt24u::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedIntValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt24u::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedIntValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107153,32 +105905,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt32u::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedIntValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt32u::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedIntValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107228,32 +105974,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt40u::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedLongLongValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt40u::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedLongLongValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107303,32 +106043,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt48u::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedLongLongValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt48u::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedLongLongValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107378,32 +106112,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt56u::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedLongLongValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt56u::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedLongLongValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107453,32 +106181,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt64u::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedLongLongValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt64u::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedLongLongValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107528,32 +106250,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt8s::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.charValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt8s::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.charValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107603,32 +106319,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt16s::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.shortValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt16s::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.shortValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107678,32 +106388,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt24s::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.intValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt24s::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.intValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107753,32 +106457,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt32s::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.intValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt32s::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.intValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107828,32 +106526,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt40s::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.longLongValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt40s::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.longLongValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107903,32 +106595,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt48s::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.longLongValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt48s::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.longLongValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -107978,32 +106664,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt56s::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.longLongValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt56s::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.longLongValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108053,32 +106733,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableInt64s::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.longLongValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableInt64s::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.longLongValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108128,32 +106802,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableEnum8::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableEnum8::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108203,32 +106871,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableEnum16::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedShortValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableEnum16::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedShortValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108278,32 +106940,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableFloatSingle::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.floatValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableFloatSingle::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.floatValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108353,32 +107009,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableFloatDouble::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.doubleValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableFloatDouble::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.doubleValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108428,32 +107078,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableOctetString::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = AsByteSpan(value);
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableOctetString::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+              nonNullValue_0 = AsByteSpan(value);
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108503,32 +107147,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableCharString::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = AsCharSpan(value);
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableCharString::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+              nonNullValue_0 = AsCharSpan(value);
+          }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108578,32 +107216,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableEnumAttr::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedCharValue);
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableEnumAttr::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                  nonNullValue_0 = static_cast<std::remove_reference_t<decltype(nonNullValue_0)>>(value.unsignedCharValue);
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108653,39 +107285,33 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableStruct::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0.a = value.a.unsignedCharValue;
-                nonNullValue_0.b = value.b.boolValue;
-                nonNullValue_0.c = static_cast<std::remove_reference_t<decltype(nonNullValue_0.c)>>(value.c.unsignedCharValue);
-                nonNullValue_0.d = AsByteSpan(value.d);
-                nonNullValue_0.e = AsCharSpan(value.e);
-                nonNullValue_0.f = static_cast<std::remove_reference_t<decltype(nonNullValue_0.f)>>(value.f.unsignedCharValue);
-                nonNullValue_0.g = value.g.floatValue;
-                nonNullValue_0.h = value.h.doubleValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableStruct::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                         nonNullValue_0.a = value.a.unsignedCharValue;
+             nonNullValue_0.b = value.b.boolValue;
+           nonNullValue_0.c = static_cast<std::remove_reference_t<decltype(nonNullValue_0.c)>>(value.c.unsignedCharValue);
+       nonNullValue_0.d = AsByteSpan(value.d);
+       nonNullValue_0.e = AsCharSpan(value.e);
+             nonNullValue_0.f = static_cast<std::remove_reference_t<decltype(nonNullValue_0.f)>>(value.f.unsignedCharValue);
+             nonNullValue_0.g = value.g.floatValue;
+             nonNullValue_0.h = value.h.doubleValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108735,32 +107361,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableRangeRestrictedInt8u::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedCharValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableRangeRestrictedInt8u::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedCharValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108810,32 +107430,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableRangeRestrictedInt8s::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.charValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableRangeRestrictedInt8s::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.charValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108885,32 +107499,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableRangeRestrictedInt16u::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.unsignedShortValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableRangeRestrictedInt16u::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.unsignedShortValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -108960,32 +107568,26 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::NullableRangeRestrictedInt16s::TypeInfo;
-            TypeInfo::Type cppValue;
-            if (value == nil) {
-                cppValue.SetNull();
-            } else {
-                auto & nonNullValue_0 = cppValue.SetNonNull();
-                nonNullValue_0 = value.shortValue;
-            }
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::NullableRangeRestrictedInt16s::TypeInfo;
+        TypeInfo::Type cppValue;
+          if (value == nil) {
+            cppValue.SetNull();
+          } else {
+            auto & nonNullValue_0 = cppValue.SetNonNull();
+                    nonNullValue_0 = value.shortValue;
+  }
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -109035,27 +107637,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = UnitTesting::Attributes::WriteOnlyInt8u::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.unsignedCharValue;
+        ListFreer listFreer;
+        using TypeInfo = UnitTesting::Attributes::WriteOnlyInt8u::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.unsignedCharValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 
@@ -113287,27 +111883,21 @@ public:
     params = [params copy];
     value = [value copy];
 
-    auto * bridge = new MTRDefaultSuccessCallbackBridge(
-        self.callbackQueue,
-        ^(id _Nullable ignored, NSError * _Nullable error) {
-            completion(error);
-        },
-        ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
-            chip::Optional<uint16_t> timedWriteTimeout;
-            if (params != nil) {
-                if (params.timedWriteTimeout != nil) {
-                    timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
-                }
-            }
+    auto * bridge = new MTRDefaultSuccessCallbackBridge(self.callbackQueue, ^(id _Nullable ignored, NSError * _Nullable error) { completion(error); }, ^(ExchangeManager & exchangeManager, const SessionHandle & session, DefaultSuccessCallbackType successCb, MTRErrorCallback failureCb, MTRCallbackBridgeBase * bridge) {
+        chip::Optional<uint16_t> timedWriteTimeout;
+        if (params != nil) {
+          if (params.timedWriteTimeout != nil){
+            timedWriteTimeout.SetValue(params.timedWriteTimeout.unsignedShortValue);
+          }
+        }
 
-            ListFreer listFreer;
-            using TypeInfo = SampleMei::Attributes::FlipFlop::TypeInfo;
-            TypeInfo::Type cppValue;
-            cppValue = value.boolValue;
+        ListFreer listFreer;
+        using TypeInfo = SampleMei::Attributes::FlipFlop::TypeInfo;
+        TypeInfo::Type cppValue;
+                cppValue = value.boolValue;
 
-            chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
-            return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout);
-        });
+        chip::Controller::ClusterBase cppCluster(exchangeManager, session, self.endpoint);
+        return cppCluster.WriteAttribute<TypeInfo>(cppValue, bridge, successCb, failureCb, timedWriteTimeout); });
     std::move(*bridge).DispatchAction(self.device);
 }
 

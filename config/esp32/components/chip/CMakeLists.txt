@@ -33,5 +33,17 @@ include(${CMAKE_CURRENT_LIST_DIR}/ota-image.cmake)
 
 set(CHIP_REQUIRE_COMPONENTS esp_eth freertos lwip bt mbedtls fatfs app_update console openthread nvs_flash spi_flash)
 
+if(NOT "${IDF_TARGET}" STREQUAL "esp32h2")
+    list(APPEND CHIP_REQUIRE_COMPONENTS mdns)
+endif()
+
+if (NOT CMAKE_BUILD_EARLY_EXPANSION)
+    if (CONFIG_COMPILER_OPTIMIZATION_ASSERTIONS_DISABLE)
+        set(is_debug TRUE)
+    else()
+        set(is_debug FALSE)
+    endif()
+endif()
+
 idf_component_register(SRCS chip.c chip.cpp
                        PRIV_REQUIRES ${CHIP_REQUIRE_COMPONENTS})
